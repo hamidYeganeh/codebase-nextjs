@@ -50,37 +50,6 @@
   --info-950: #001a37;
 }
 
-[data-theme="blueberry"] {
-  --primary-50: #f6fbff;
-  --primary-100: #c8e5fc;
-  --primary-200: #99d0fa;
-  --primary-300: #6bbaf7;
-  --primary-400: #43a1e9;
-  --primary-500: #3a8ccb;
-  --primary-600: #3278ae;
-  --primary-700: #296491;
-  --primary-800: #214f73;
-  --primary-900: #193b56;
-  --primary-950: #102738;
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-}
-[data-theme="blueberry-dark"] {
-  --primary-50: #f6fbff;
-  --primary-100: #c8e5fc;
-  --primary-200: #99d0fa;
-  --primary-300: #6bbaf7;
-  --primary-400: #43a1e9;
-  --primary-500: #3a8ccb;
-  --primary-600: #3278ae;
-  --primary-700: #296491;
-  --primary-800: #214f73;
-  --primary-900: #193b56;
-  --primary-950: #102738;
-  --background: #102738;
-  --foreground: #f5f7fa;
-}
-
 [data-theme="shiraz"] {
   --primary-50: #f9f2f5;
   --primary-100: #deb3c3;
@@ -110,37 +79,6 @@
   --primary-950: #21010d;
   --background: #21010d;
   --foreground: #f7eef2;
-}
-
-[data-theme="flax-smoke"] {
-  --primary-50: #fafaf8;
-  --primary-100: #dee0d5;
-  --primary-200: #c3c6b2;
-  --primary-300: #a7ac8f;
-  --primary-400: #8a8f6d;
-  --primary-500: #787d5f;
-  --primary-600: #676b52;
-  --primary-700: #565944;
-  --primary-800: #444736;
-  --primary-900: #333528;
-  --primary-950: #21231a;
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-}
-[data-theme="flax-smoke-dark"] {
-  --primary-50: #fafaf8;
-  --primary-100: #dee0d5;
-  --primary-200: #c3c6b2;
-  --primary-300: #a7ac8f;
-  --primary-400: #8a8f6d;
-  --primary-500: #787d5f;
-  --primary-600: #676b52;
-  --primary-700: #565944;
-  --primary-800: #444736;
-  --primary-900: #333528;
-  --primary-950: #21231a;
-  --background: #21231a;
-  --foreground: #f7f7f2;
 }
 
 body {
