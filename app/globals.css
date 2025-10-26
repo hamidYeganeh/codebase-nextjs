@@ -1,22 +1,146 @@
-@import "tailwindcss";
+@import url("./tailwindcss.css");
 
 :root {
+  --success-50: #f6fdf9;
+  --success-100: #c7f2da;
+  --success-200: #99e7bb;
+  --success-300: #6add9c;
+  --success-400: #42c97c;
+  --success-500: #39b06d;
+  --success-600: #31975d;
+  --success-700: #297d4d;
+  --success-800: #20643e;
+  --success-900: #184a2e;
+  --success-950: #10311e;
+
+  --error-50: #fef3f7;
+  --error-100: #fbb8cf;
+  --error-200: #f87da8;
+  --error-300: #f54180;
+  --error-400: #e7115b;
+  --error-500: #ca0f50;
+  --error-600: #ad0d44;
+  --error-700: #8f0b39;
+  --error-800: #72082d;
+  --error-900: #550622;
+  --error-950: #380416;
+
+  --warning-50: #fffbf4;
+  --warning-100: #fce4bd;
+  --warning-200: #face87;
+  --warning-300: #f7b750;
+  --warning-400: #e99d22;
+  --warning-500: #cb891e;
+  --warning-600: #ae751a;
+  --warning-700: #916115;
+  --warning-800: #734e11;
+  --warning-900: #563a0d;
+  --warning-950: #382608;
+
+  --info-50: #f2f8fe;
+  --info-100: #b3d4fa;
+  --info-200: #73b0f6;
+  --info-300: #338cf1;
+  --info-400: #0069e2;
+  --info-500: #005cc6;
+  --info-600: #004fa9;
+  --info-700: #00418c;
+  --info-800: #003470;
+  --info-900: #002753;
+  --info-950: #001a37;
+}
+
+[data-theme="blueberry"] {
+  --primary-50: #f6fbff;
+  --primary-100: #c8e5fc;
+  --primary-200: #99d0fa;
+  --primary-300: #6bbaf7;
+  --primary-400: #43a1e9;
+  --primary-500: #3a8ccb;
+  --primary-600: #3278ae;
+  --primary-700: #296491;
+  --primary-800: #214f73;
+  --primary-900: #193b56;
+  --primary-950: #102738;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+}
+[data-theme="blueberry-dark"] {
+  --primary-50: #f6fbff;
+  --primary-100: #c8e5fc;
+  --primary-200: #99d0fa;
+  --primary-300: #6bbaf7;
+  --primary-400: #43a1e9;
+  --primary-500: #3a8ccb;
+  --primary-600: #3278ae;
+  --primary-700: #296491;
+  --primary-800: #214f73;
+  --primary-900: #193b56;
+  --primary-950: #102738;
+  --background: #102738;
+  --foreground: #f5f7fa;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="shiraz"] {
+  --primary-50: #f9f2f5;
+  --primary-100: #deb3c3;
+  --primary-200: #c27492;
+  --primary-300: #a63560;
+  --primary-400: #890335;
+  --primary-500: #78022e;
+  --primary-600: #660228;
+  --primary-700: #550221;
+  --primary-800: #44011a;
+  --primary-900: #320114;
+  --primary-950: #21010d;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+[data-theme="shiraz-dark"] {
+  --primary-50: #f9f2f5;
+  --primary-100: #deb3c3;
+  --primary-200: #c27492;
+  --primary-300: #a63560;
+  --primary-400: #890335;
+  --primary-500: #78022e;
+  --primary-600: #660228;
+  --primary-700: #550221;
+  --primary-800: #44011a;
+  --primary-900: #320114;
+  --primary-950: #21010d;
+  --background: #21010d;
+  --foreground: #f7eef2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="flax-smoke"] {
+  --primary-50: #fafaf8;
+  --primary-100: #dee0d5;
+  --primary-200: #c3c6b2;
+  --primary-300: #a7ac8f;
+  --primary-400: #8a8f6d;
+  --primary-500: #787d5f;
+  --primary-600: #676b52;
+  --primary-700: #565944;
+  --primary-800: #444736;
+  --primary-900: #333528;
+  --primary-950: #21231a;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+[data-theme="flax-smoke-dark"] {
+  --primary-50: #fafaf8;
+  --primary-100: #dee0d5;
+  --primary-200: #c3c6b2;
+  --primary-300: #a7ac8f;
+  --primary-400: #8a8f6d;
+  --primary-500: #787d5f;
+  --primary-600: #676b52;
+  --primary-700: #565944;
+  --primary-800: #444736;
+  --primary-900: #333528;
+  --primary-950: #21231a;
+  --background: #21231a;
+  --foreground: #f7f7f2;
 }
 
 body {
