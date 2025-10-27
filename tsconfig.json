@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -20,9 +21,24 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/ui": ["./src/components/ui/*"],
-      "@/shared": ["./src/components/shared/*"],
-      "@/utils": ["./src/utils/*"]
+
+      "@/components/*": ["./src/components/*"],
+      "@components/*": ["./src/components/*"],
+
+      "@/ui/*": ["./src/components/ui/*"],
+      "@ui/*": ["./src/components/ui/*"],
+
+      "@/shared/*": ["./src/components/shared/*"],
+      "@shared/*": ["./src/components/shared/*"],
+
+      "@/configs/*": ["./src/configs/*"],
+      "@configs/*": ["./src/configs/*"],
+
+      "@/providers/*": ["./src/providers/*"],
+      "@providers/*": ["./src/providers/*"],
+
+      "@/utils/*": ["./src/utils/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": [
