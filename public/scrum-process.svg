@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380">
+  <defs>
+    <style>
+      .teal{fill:#1397a5}
+      .teal-dark{fill:#0f7f8b}
+      .bg{fill:#f7f9fb}
+      .text{fill:#1f2937;font-family:Inter,Arial,sans-serif}
+      .label{font-size:16px}
+      .small{font-size:14px}
+      .medium{font-size:18px}
+      .large{font-size:22px;font-weight:600}
+      .muted{fill:#6b7280}
+      .line{stroke:#9ca3af;stroke-width:2;fill:none}
+      .arrow{fill:#1397a5}
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="380" class="bg"/>
+
+  <!-- Left column: Product Owner -->
+  <!-- simple person icon -->
+  <circle cx="95" cy="55" r="18" class="muted"/>
+  <path d="M60 95 q35 -18 70 0 v28 H60 Z" class="muted"/>
+  <text x="30" y="140" class="text label">Product Owner</text>
+  <circle cx="95" cy="245" r="60" class="teal"/>
+  <text x="43" y="250" class="text medium" text-anchor="start" fill="#fff">Produkt‑backlog</text>
+
+  <!-- Team icon and two circles -->
+  <!-- team icon -->
+  <circle cx="260" cy="55" r="12" class="muted"/>
+  <circle cx="238" cy="68" r="10" class="muted"/>
+  <circle cx="282" cy="68" r="10" class="muted"/>
+  <text x="232" y="100" class="text label">Team</text>
+
+  <circle cx="260" cy="245" r="60" class="teal"/>
+  <text x="210" y="240" class="text small" fill="#fff">Sprint Planning</text>
+  <text x="215" y="260" class="text small" fill="#fff">Meeting</text>
+
+  <circle cx="430" cy="245" r="60" class="teal"/>
+  <text x="385" y="250" class="text medium" fill="#fff">Sprint Backlog</text>
+
+  <!-- Arrow from Sprint Backlog to Sprint loop -->
+  <path d="M490 245 H580" class="line"/>
+  <polygon points="580,235 605,245 580,255" class="arrow"/>
+
+  <!-- Central Sprint loop -->
+  <!-- donut ring -->
+  <circle cx="740" cy="195" r="130" class="teal"/>
+  <circle cx="740" cy="195" r="90" fill="#f7f9fb"/>
+  <!-- main arrow head to the right -->
+  <polygon points="870,195 930,195 905,220" class="teal"/>
+
+  <!-- small daily scrum loop -->
+  <circle cx="825" cy="110" r="42" class="teal-dark"/>
+  <circle cx="825" cy="110" r="24" fill="#f7f9fb"/>
+  <polygon points="858,110 890,110 875,125" class="teal-dark"/>
+
+  <!-- central labels -->
+  <text x="740" y="190" text-anchor="middle" class="text large">Sprint</text>
+  <text x="740" y="215" text-anchor="middle" class="text label">1–4 Wochen</text>
+  <text x="820" y="75" text-anchor="middle" class="text label">Daily Scrum</text>
+
+  <!-- Scrum Master label above loop -->
+  <circle cx="740" cy="35" r="16" class="muted"/>
+  <path d="M710 65 q30 -14 60 0 v22 H710 Z" class="muted"/>
+  <text x="690" y="105" class="text label">Scrum Master</text>
+
+  <!-- Sprint End circle -->
+  <circle cx="1005" cy="245" r="60" class="teal"/>
+  <text x="975" y="250" class="text medium" fill="#fff">Sprint Ende</text>
+
+  <!-- Right team icon and final labels -->
+  <circle cx="1120" cy="55" r="12" class="muted"/>
+  <circle cx="1098" cy="68" r="10" class="muted"/>
+  <circle cx="1142" cy="68" r="10" class="muted"/>
+  <text x="1010" y="110" class="text label">Sprint review +</text>
+  <text x="1010" y="132" class="text label">Sprint Retrospective</text>
+
+  <!-- subtle connecting baseline -->
+  <path d="M155 245 H200" class="line"/>
+  <path d="M320 245 H370" class="line"/>
+
+  <!-- arrow heads for baselines -->
+  <polygon points="200,235 225,245 200,255" class="arrow"/>
+  <polygon points="370,235 395,245 370,255" class="arrow"/>
+
+  <!-- footer note -->
+  <text x="600" y="360" text-anchor="middle" class="text small" fill="#6b7280">Vector SVG recreation • Scales to any resolution while preserving details</text>
+</svg>
