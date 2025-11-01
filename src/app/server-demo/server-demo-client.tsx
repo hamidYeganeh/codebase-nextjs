@@ -3,7 +3,6 @@
 import { useUsers } from "@/api/hooks/useServerUsers";
 
 export function ServerDemoClient() {
-  // Use the same query that was prefetched on the server
   const { data: users, isLoading, error } = useUsers();
 
   return (
@@ -34,7 +33,7 @@ export function ServerDemoClient() {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user) => (
+              {users?.users?.map((user) => (
                 <tr
                   key={user.id}
                   className="border-t border-gray-200 dark:border-gray-700"
