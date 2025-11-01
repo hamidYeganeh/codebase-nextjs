@@ -2,6 +2,8 @@
   "HomePage": {
     "title": "Hello world!",
     "subtitle": "How Are You???",
-    "name": "Hassan"
+    "name": "Hassan",
+    "description": "This is desc",
+    "user": { "address": "123 Main St" }
   }
 }

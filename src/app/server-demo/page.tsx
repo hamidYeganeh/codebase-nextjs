@@ -3,9 +3,11 @@ import { QueryProvider } from "@/providers/query.provider";
 import { userKeys } from "@/api/hooks/useServerUsers";
 import { ServerDemoClient } from "./server-demo-client";
 import { User } from "@/store";
+import { getTranslations } from "next-intl/server";
 
 // Server component - no "use client" directive
 export default async function ServerDemo() {
+  const t = await getTranslations();
   // Initialize a new QueryClient for server-side
   const queryClient = new QueryClient();
 
@@ -29,6 +31,7 @@ export default async function ServerDemo() {
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">
         Server-Side API Demo with React Query
+        {t("HomePage.title")}
       </h1>
 
       {/* Wrap the client component with QueryProvider and pass the dehydrated state */}

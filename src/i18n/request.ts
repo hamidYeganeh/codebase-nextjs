@@ -1,7 +1,16 @@
+// libs
 import { getRequestConfig } from "next-intl/server";
+import { cookies } from "next/headers";
+// configs
+import { COOKIE_KEYS } from "@/configs/storage.config";
+
+type Locale = "en" | "de";
 
 export default getRequestConfig(async () => {
-  const locale = "en";
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get(COOKIE_KEYS.LOCALE)?.value;
+
+  const locale = (cookieLocale ?? "en") as Locale;
 
   return {
     locale,

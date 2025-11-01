@@ -4,9 +4,10 @@ import { Button } from "@/ui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/Popover";
 import { useAppTheme } from "@/providers/theme.provider";
 import { List, ListItem } from "@/components/ui/List";
-import { useTranslations } from "next-intl";
 import { StateManagementExample } from "@/components/examples/StateManagementExample";
 import Link from "next/link";
+import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
+      <LocaleSwitcher />
       <Popover>
         <PopoverTrigger asChild>
           <Button variant={"flat"}>Open Popover</Button>
@@ -25,7 +27,7 @@ export default function Home() {
       <h1 suppressHydrationWarning>{`${mode}, ${theme}`}</h1>
       <List size={"xl"} variant={"light"} color="success" radius={"md"}>
         <ListItem color={"warning"} size={"xs"} variant={"ghost"}>
-          {t("title")}
+          {t("description")}
         </ListItem>
         <ListItem>How Are You</ListItem>
       </List>

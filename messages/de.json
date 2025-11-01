@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "Hallo wereld!",
+    "subtitle": "Hoe gaat het met je???",
+    "name": "Hassan",
+    "description": "Dit is een beschrijving",
+    "user": { "address": "123 Main St" }
+  }
+}
