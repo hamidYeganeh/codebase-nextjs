@@ -62,41 +62,34 @@ export const useAppTheme = (): IAppTheme => {
   }
 
   const [themeValue, modeValue] = nextResolvedTheme.split("-");
-
-  const currentThemeKey = getThemeKeyFromValue(themeValue);
-  const currentModeKey = getModeKeyFromValue(modeValue);
+  const themeKey = getThemeKeyFromValue(themeValue);
+  const modeKey = getModeKeyFromValue(modeValue);
 
   const handleSetTheme = useCallback(
     (newThemeKey: keyof typeof THEMES) => {
-      const newFullTheme = getFullThemeName(newThemeKey, currentModeKey);
+      const newFullTheme = getFullThemeName(newThemeKey, modeKey);
       setNextTheme(newFullTheme);
     },
-    [currentModeKey, setNextTheme]
+    [modeKey, setNextTheme]
   );
 
   const handleSetMode = useCallback(
     (newModeKey: keyof typeof THEME_MODES) => {
-      const newFullTheme = getFullThemeName(currentThemeKey, newModeKey);
+      const newFullTheme = getFullThemeName(themeKey, newModeKey);
       setNextTheme(newFullTheme);
     },
-    [currentThemeKey, setNextTheme]
+    [themeKey, setNextTheme]
   );
 
   return useMemo(
     () => ({
-      theme: currentThemeKey,
+      theme: themeKey,
       setTheme: handleSetTheme,
-      mode: currentModeKey,
+      mode: modeKey,
       setMode: handleSetMode,
       resolvedTheme: nextResolvedTheme,
     }),
-    [
-      currentThemeKey,
-      currentModeKey,
-      handleSetTheme,
-      handleSetMode,
-      nextResolvedTheme,
-    ]
+    [themeKey, modeKey, handleSetTheme, handleSetMode, nextResolvedTheme]
   );
 };
 

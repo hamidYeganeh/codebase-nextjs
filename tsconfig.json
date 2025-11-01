@@ -22,11 +22,14 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@/api/*": ["./src/api/*"],
       "@/components/*": ["./src/components/*"],
-      "@/ui/*": ["./src/components/ui/*"],
-      "@/shared/*": ["./src/components/shared/*"],
       "@/configs/*": ["./src/configs/*"],
+      "@/i18n/*": ["./src/i18n/*"],
       "@/providers/*": ["./src/providers/*"],
+      "@/shared/*": ["./src/components/shared/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/ui/*": ["./src/components/ui/*"],
       "@/utils/*": ["./src/utils/*"]
     }
   },
