@@ -6,7 +6,7 @@ export const UsersList = () => {
   const { data } = useUsers();
   return (
     <>
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col gap-2 w-full px-10">
         {data?.users?.map((user) => (
           <div key={user.id}>
             <p className="text-white">{user.firstName}</p>

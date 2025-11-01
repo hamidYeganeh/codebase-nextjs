@@ -26,10 +26,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/icon-512.png", type: "image/png", sizes: "512x512" },
       { url: "/icons/icon.svg", type: "image/svg+xml", sizes: "any" },
     ],
     apple: [
-      { url: "/icons/icon.svg", sizes: "any" },
+      // iOS requires PNG apple-touch-icon for proper install icon (no Safari badge)
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180" },
     ],
   },
 };
@@ -46,6 +49,7 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Codebase" />
         <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body
