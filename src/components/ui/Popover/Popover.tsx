@@ -11,7 +11,9 @@ import type { PopoverProps } from "./PopoverTypes";
 const Popover: FC<PopoverProps> = (props) => {
   const { children, ...otherProps } = props;
 
-  const [isOpen, setIsOpen] = useState(props?.open ?? false);
+  const [isOpen, setIsOpen] = useState(
+    (props?.open || props?.defaultOpen) ?? false
+  );
 
   return (
     <PopoverProvider value={{ isOpen, setIsOpen }}>

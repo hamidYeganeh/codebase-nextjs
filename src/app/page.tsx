@@ -11,17 +11,37 @@ import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
 import NotificationsToggle from "@/components/pwa/NotificationsToggle";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { useState } from "react";
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownTrigger,
+} from "@/components/ui/Dropdown";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
   const t = useTranslations("HomePage");
-  const [toggled, setToggled] = useState(false);
 
   return (
     <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <LocaleSwitcher />
       <PWAInstallPrompt />
       <NotificationsToggle />
+
+      <Dropdown>
+        <DropdownTrigger asChild>
+          <Button variant={"flat"}>Open Dropdown</Button>
+        </DropdownTrigger>
+        <DropdownContent size={"xl"} className="p-1 w-100 " align="start">
+          <DropdownLabel>Label</DropdownLabel>
+          <DropdownItem>File</DropdownItem>
+          <DropdownItem>Edit</DropdownItem>
+          <DropdownItem>Text</DropdownItem>
+          <DropdownItem>Image</DropdownItem>
+        </DropdownContent>
+      </Dropdown>
+
       <Popover>
         <PopoverTrigger asChild>
           <Button variant={"flat"}>Open Popover</Button>
