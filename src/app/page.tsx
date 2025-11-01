@@ -4,7 +4,6 @@ import { Button } from "@/ui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/Popover";
 import { useAppTheme } from "@/providers/theme.provider";
 import { List, ListItem } from "@/components/ui/List";
-import { StateManagementExample } from "@/components/examples/StateManagementExample";
 import Link from "next/link";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { useTranslations } from "next-intl";
@@ -38,7 +37,6 @@ export default function Home() {
 
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">State Management Example</h2>
-        <StateManagementExample />
         <div className="mt-4">
           <a
             href="/server-demo"
@@ -90,8 +88,8 @@ export default function Home() {
           WATERCOURSE
         </Button>
       </div>
-      <Button as={Link} href="/server-demo" loading>
-        REDIRECT
+      <Button as={Link} href="/users">
+        REDIRECT USERS
       </Button>
     </main>
   );

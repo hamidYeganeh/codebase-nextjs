@@ -22,7 +22,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/api/*": ["./src/api/*"],
+      "@/api/*": ["./src/api/hooks/*"],
       "@/components/*": ["./src/components/*"],
       "@/configs/*": ["./src/configs/*"],
       "@/i18n/*": ["./src/i18n/*"],
