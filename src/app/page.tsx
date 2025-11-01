@@ -52,6 +52,13 @@ export default function Home() {
         >
           BLUEBERRY
         </Button>
+        <Button
+          onClick={() => {
+            setTheme("WATERCOURSE");
+          }}
+        >
+          WATERCOURSE
+        </Button>
       </div>
     </main>
   );

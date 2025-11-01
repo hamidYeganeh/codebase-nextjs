@@ -1,6 +1,7 @@
 export enum THEMES {
   SHIRAZ = "shiraz",
   BLUEBERRY = "blueberry",
+  WATERCOURSE = "watercourse",
 }
 export enum THEME_MODES {
   LIGHT = "light",
