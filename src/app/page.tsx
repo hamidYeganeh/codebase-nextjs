@@ -2,12 +2,20 @@
 
 import { Button } from "@/ui/Button";
 import { useAppTheme } from "@/providers/theme.provider";
+import { List, ListItem } from "@/components/ui/List";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
   return (
-    <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-500 bg-primary-200">
+    <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <h1 suppressHydrationWarning>{`${mode}, ${theme}`}</h1>
+      <List size={"xl"} variant={"light"} color="success" radius={"md"}>
+        <ListItem color={"warning"} size={"xs"} variant={"ghost"}>
+          Hello
+        </ListItem>
+        <ListItem>How Are You</ListItem>
+      </List>
+
       <div>
         <Button
           color={"warning"}
@@ -26,7 +34,7 @@ export default function Home() {
           Dark
         </Button>
       </div>
-      <div>
+      <div className="bg-red-500">
         <Button
           onClick={() => {
             setTheme("SHIRAZ");

@@ -1,10 +1,15 @@
 "use client";
 
-import { FC, MouseEvent, useImperativeHandle, useRef } from "react";
-import { ButtonProps } from "./ButtonTypes.d";
-import { cn } from "@utils/cn";
+// libs
+import { useImperativeHandle, useRef } from "react";
+import { Ripple } from "@/shared/Ripple";
+import { cn } from "@/utils/cn";
+// types
+import type { FC, MouseEvent } from "react";
+import type { RippleRef } from "@/shared/Ripple";
+import type { ButtonProps } from "./ButtonTypes.d";
+// styles
 import { ButtonStyles } from "./ButtonStyles";
-import { Ripple, RippleRef } from "@/shared/Ripple";
 
 const Button: FC<ButtonProps> = (props) => {
   const {
@@ -43,10 +48,14 @@ const Button: FC<ButtonProps> = (props) => {
       onClick={handleClick}
       className={cn(
         className,
-        ButtonStyles.base({ variant, color, size, radius, disabledAnimation }),
-        {
-          "w-full": fullWidth,
-        }
+        ButtonStyles.base({
+          variant,
+          color,
+          size,
+          radius,
+          disabledAnimation,
+          fullWidth,
+        })
       )}
       {...buttonProps}
     >
