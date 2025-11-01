@@ -4,7 +4,7 @@ import { RippleProps, RippleRef } from "./RippleTypes.d";
 export const Ripple = forwardRef<RippleRef, RippleProps>((props, ref) => {
   const { parentRef } = props;
 
-  function createRipple(event: MouseEvent<HTMLButtonElement | HTMLDivElement>) {
+  function createRipple(event: MouseEvent<HTMLElement>) {
     const element = parentRef.current;
 
     const rect = element.getBoundingClientRect();
@@ -25,7 +25,7 @@ export const Ripple = forwardRef<RippleRef, RippleProps>((props, ref) => {
       getComputedStyle(element).getPropertyValue("--color") || "currentColor";
     ripple.style.pointerEvents = "none";
     ripple.style.transition =
-      "transform 400ms ease-out, opacity 400ms ease-out";
+      "transform 600ms ease-out, opacity 600ms ease-out";
 
     element.appendChild(ripple);
 

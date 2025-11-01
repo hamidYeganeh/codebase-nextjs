@@ -5,11 +5,9 @@ export interface RippleRef {
    * create the ripple animation effect.
    * @param event The React MouseEvent from the parent Button click.
    */
-  createRipple: (
-    event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
-  ) => void;
+  createRipple: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface RippleProps {
-  parentRef: Ref<HTMLButtonElement | HTMLDivElement>;
+  parentRef: Ref<HTMLElement>;
 }

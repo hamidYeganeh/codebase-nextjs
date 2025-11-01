@@ -1,13 +1,9 @@
-import { cn } from "@/utils/cn";
 import { cva } from "class-variance-authority";
+import { cn } from "@/utils/cn";
 
-const ButtonBaseStyles = cva(
-  cn(
-    // base
-    "outline-none inline-flex flex-row items-center min-w-max justify-center gap-1.5 relative overflow-hidden select-none cursor-pointer box-border select-none subpixel-antialiased whitespace-nowrap",
-    // typography
-    "font-semibold capitalize"
-  ),
+const ListBaseStyles = cva(cn("flex flex-col gap-1"), { variants: {} });
+const ListItemStyles = cva(
+  cn("relative overflow-hidden w-full select-none flex items-center gap-1.5"),
   {
     variants: {
       variant: {
@@ -55,21 +51,10 @@ const ButtonBaseStyles = cva(
         false:
           "transition-transform-colors-opacity motion-reduce:transition-none duration-200",
       },
-      fullWidth: {
-        true: "w-full",
-        false: "w-fit",
-      },
-    },
-    defaultVariants: {
-      color: "primary",
-      radius: "md",
-      size: "md",
-      variant: "contained",
-      disabledAnimation: false,
     },
   }
 );
-
-export const ButtonStyles = {
-  base: ButtonBaseStyles,
+export const ListStyles = {
+  base: ListBaseStyles,
+  item: ListItemStyles,
 };

@@ -10,6 +10,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "allowArbitraryExtensions": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
@@ -21,24 +22,15 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-
+      "@/api/*": ["./src/api/*"],
       "@/components/*": ["./src/components/*"],
-      "@components/*": ["./src/components/*"],
-
-      "@/ui/*": ["./src/components/ui/*"],
-      "@ui/*": ["./src/components/ui/*"],
-
-      "@/shared/*": ["./src/components/shared/*"],
-      "@shared/*": ["./src/components/shared/*"],
-
       "@/configs/*": ["./src/configs/*"],
-      "@configs/*": ["./src/configs/*"],
-
+      "@/i18n/*": ["./src/i18n/*"],
       "@/providers/*": ["./src/providers/*"],
-      "@providers/*": ["./src/providers/*"],
-
-      "@/utils/*": ["./src/utils/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@/shared/*": ["./src/components/shared/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/utils/*": ["./src/utils/*"]
     }
   },
   "include": [
@@ -47,7 +39,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    ".next\\dev/types/**/*.ts",
+    ".next\\dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
