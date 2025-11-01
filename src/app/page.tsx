@@ -8,6 +8,8 @@ import { StateManagementExample } from "@/components/examples/StateManagementExa
 import Link from "next/link";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { useTranslations } from "next-intl";
+import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
+import NotificationsToggle from "@/components/pwa/NotificationsToggle";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
@@ -16,6 +18,8 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <LocaleSwitcher />
+      <PWAInstallPrompt />
+      <NotificationsToggle />
       <Popover>
         <PopoverTrigger asChild>
           <Button variant={"flat"}>Open Popover</Button>

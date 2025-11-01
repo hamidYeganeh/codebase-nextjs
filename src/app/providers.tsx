@@ -2,6 +2,7 @@
 import { I18nProvider } from "@/providers/i18n.provider";
 import { ThemeProvider } from "@/providers/theme.provider";
 import { QueryProvider } from "@/providers/query.provider";
+import ServiceWorkerRegister from "@/components/pwa/ServiceWorkerRegister";
 // types
 import type { FC, PropsWithChildren } from "react";
 
@@ -13,7 +14,10 @@ export const Providers: FC<ProvidersProps> = (props) => {
     <>
       <QueryProvider>
         <I18nProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <ServiceWorkerRegister />
+            {children}
+          </ThemeProvider>
         </I18nProvider>
       </QueryProvider>
     </>
