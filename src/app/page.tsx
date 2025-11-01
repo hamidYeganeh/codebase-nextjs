@@ -3,15 +3,18 @@
 import { Button } from "@/ui/Button";
 import { useAppTheme } from "@/providers/theme.provider";
 import { List, ListItem } from "@/components/ui/List";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
+  const t = useTranslations("HomePage");
+
   return (
     <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <h1 suppressHydrationWarning>{`${mode}, ${theme}`}</h1>
       <List size={"xl"} variant={"light"} color="success" radius={"md"}>
         <ListItem color={"warning"} size={"xs"} variant={"ghost"}>
-          Hello
+          {t("title")}
         </ListItem>
         <ListItem>How Are You</ListItem>
       </List>
