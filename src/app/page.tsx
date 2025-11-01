@@ -1,16 +1,19 @@
+"use client";
+
 import { Button } from "@/ui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/Popover";
 import { useAppTheme } from "@/providers/theme.provider";
 import { List, ListItem } from "@/components/ui/List";
 import { useTranslations } from "next-intl";
 import { StateManagementExample } from "@/components/examples/StateManagementExample";
+import Link from "next/link";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
   const t = useTranslations("HomePage");
 
   return (
-    <main className="min-h-[300dvh] w-full py-10 px-4 sm:px-8 space-y-10 pt-80">
+    <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant={"flat"}>Open Popover</Button>
@@ -19,11 +22,10 @@ export default function Home() {
           <p>Popover Content</p>
         </PopoverContent>
       </Popover>
-    <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">
       <h1 suppressHydrationWarning>{`${mode}, ${theme}`}</h1>
       <List size={"xl"} variant={"light"} color="success" radius={"md"}>
         <ListItem color={"warning"} size={"xs"} variant={"ghost"}>
-          {t("subtitle")}
+          {t("title")}
         </ListItem>
         <ListItem>How Are You</ListItem>
       </List>
@@ -82,6 +84,9 @@ export default function Home() {
           WATERCOURSE
         </Button>
       </div>
+      <Button as={Link} href="/server-demo" loading>
+        REDIRECT
+      </Button>
     </main>
   );
 }

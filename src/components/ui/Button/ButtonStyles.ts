@@ -59,6 +59,9 @@ const ButtonBaseStyles = cva(
         true: "w-full",
         false: "w-fit",
       },
+      loading: {
+        true: "grayscale-100 pointer-events-none cursor-not-allowed",
+      },
     },
     defaultVariants: {
       color: "primary",

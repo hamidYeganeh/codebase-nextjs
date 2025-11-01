@@ -13,6 +13,7 @@ declare interface IntlMessages {
   HomePage: {
     title: string;
     subtitle: string;
+    name: string;
   };
 }
 

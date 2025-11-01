@@ -1,6 +1,8 @@
+// styles
 import { ButtonStyles } from "./ButtonStyles";
-import { VariantProps } from "class-variance-authority";
-import { ComponentPropsWithRef } from "react";
+// types
+import type { VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithRef, ElementType } from "react";
 
 interface IHTMLButtonProps
   extends Omit<ComponentPropsWithRef<"button">, "color"> {}
@@ -9,4 +11,7 @@ interface IButtonStylesVariants
 export interface ButtonProps extends IHTMLButtonProps, IButtonStylesVariants {
   disabledRipple?: boolean;
   fullWidth?: boolean;
+  as?: ElementType;
+  href?: string;
+  loading?: boolean;
 }

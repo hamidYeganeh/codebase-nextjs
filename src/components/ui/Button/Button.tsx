@@ -24,13 +24,16 @@ const Button: FC<ButtonProps> = (props) => {
     className,
     fullWidth,
     disabledAnimation,
-    ...buttonProps
+    as: Component = "button",
+    href,
+    loading = false,
+    ...otherProps
   } = props;
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLElement>(null);
   const rippleRef = useRef<RippleRef>(null);
 
-  useImperativeHandle(ref, () => buttonRef.current!);
+  useImperativeHandle(ref, () => buttonRef.current! as HTMLButtonElement);
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
     if (rippleRef.current && !disabledRipple) {
@@ -43,7 +46,7 @@ const Button: FC<ButtonProps> = (props) => {
   }
 
   return (
-    <button
+    <Component
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
@@ -55,13 +58,16 @@ const Button: FC<ButtonProps> = (props) => {
           radius,
           disabledAnimation,
           fullWidth,
+          loading,
         })
       )}
-      {...buttonProps}
+      disabled={loading}
+      {...otherProps}
+      {...(href ? { href } : {})}
     >
       <Ripple parentRef={buttonRef} ref={rippleRef} />
       {children}
-    </button>
+    </Component>
   );
 };
 export default Button;
