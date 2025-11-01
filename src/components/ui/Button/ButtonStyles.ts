@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const ButtonBaseStyles = cva(
   cn(
     // base
-    "outline-none inline-flex flex-row items-center min-w-max justify-center gap-1.5 relative overflow-hidden select-none cursor-pointer box-border select-none subpixel-antialiased whitespace-nowrap",
+    "outline-none border-0 inline-flex flex-row items-center min-w-max justify-center gap-1.5 relative overflow-hidden select-none cursor-pointer box-border select-none subpixel-antialiased whitespace-nowrap",
     // typography
     "font-semibold capitalize"
   ),

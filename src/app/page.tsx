@@ -9,10 +9,13 @@ import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { useTranslations } from "next-intl";
 import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
 import NotificationsToggle from "@/components/pwa/NotificationsToggle";
+import { Checkbox } from "@/components/ui/Checkbox";
+import { useState } from "react";
 
 export default function Home() {
   const { setMode, setTheme, mode, theme } = useAppTheme();
   const t = useTranslations("HomePage");
+  const [toggled, setToggled] = useState(false);
 
   return (
     <main className="min-h-screen w-full py-10 px-4 sm:px-8 space-y-10 dark:bg-primary-900 bg-primary-200">

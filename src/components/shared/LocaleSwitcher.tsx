@@ -1,16 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
-import { COOKIE_KEYS } from "@/configs/storage.config";
+import { useI18nContext } from "@/providers/i18n.provider";
 
 export function LocaleSwitcher() {
-  const router = useRouter();
-
-  const setLocale = (locale: string) => {
-    document.cookie = `${COOKIE_KEYS.LOCALE}=${locale}; path=/`;
-    router.refresh();
-  };
+  const { setLocale } = useI18nContext();
 
   return (
     <div style={{ display: "flex", gap: 8 }}>
