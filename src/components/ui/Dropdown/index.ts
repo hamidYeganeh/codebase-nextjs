@@ -9,7 +9,6 @@ export { default as DropdownShortcut } from "./DropdownShortcut";
 export { default as DropdownCheckboxItem } from "./DropdownCheckboxItem";
 export { default as DropdownRadioItem } from "./DropdownRadioItem";
 export { default as DropdownRadioGroup } from "./DropdownRadioGroup";
-export { default as DropdownItemIndicator } from "./DropdownItemIndicator";
 export { default as DropdownSub } from "./DropdownSub";
 export { default as DropdownSubTrigger } from "./DropdownSubTrigger";
 export { default as DropdownSubContent } from "./DropdownSubContent";

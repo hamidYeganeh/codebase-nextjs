@@ -43,7 +43,6 @@ const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
   return (
     <HighlightItem
       data-slot="dropdown-menu-highlight-item"
-      activeClassName={cn(DropdownStyles.item({ variant, color }))}
       disabled={disabled}
       {...highlightItemProps}
     >
@@ -53,7 +52,7 @@ const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
         textValue={textValue}
         asChild
         data-inset={inset}
-        className={cn(DropdownStyles.item({ size }), className)}
+        className={cn(DropdownStyles.item({}), className)}
         {...otherProps}
       >
         <motion.div

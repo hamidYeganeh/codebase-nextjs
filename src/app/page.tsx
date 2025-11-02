@@ -17,6 +17,32 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownTrigger,
+  DropdownCheckboxItem,
+  DropdownCheckboxItemProps,
+  DropdownContentProps,
+  DropdownGroup,
+  DropdownGroupProps,
+  DropdownItemIndicatorProps,
+  DropdownItemProps,
+  DropdownLabelProps,
+  DropdownMenuContextType,
+  DropdownMenuSubContextType,
+  DropdownProps,
+  DropdownRadioGroup,
+  DropdownRadioGroupProps,
+  DropdownRadioItem,
+  DropdownRadioItemProps,
+  DropdownSeparator,
+  DropdownSeparatorProps,
+  DropdownShortcut,
+  DropdownShortcutProps,
+  DropdownSub,
+  DropdownSubContent,
+  DropdownSubContentProps,
+  DropdownSubProps,
+  DropdownSubTrigger,
+  DropdownSubTriggerProps,
+  DropdownTriggerProps,
 } from "@/components/ui/Dropdown";
 
 export default function Home() {
@@ -35,12 +61,19 @@ export default function Home() {
         </DropdownTrigger>
         <DropdownContent
           color="primary"
-          variant={"flat"}
+          variant={"contained"}
           className="p-1 w-100 "
           align="start"
         >
           <DropdownLabel>Label</DropdownLabel>
-          <DropdownItem>File</DropdownItem>
+          <DropdownSub>
+            <DropdownSubTrigger>File</DropdownSubTrigger>
+            <DropdownSubContent variant={"contained"} color="primary">
+              <DropdownItem>New</DropdownItem>
+              <DropdownItem>Open</DropdownItem>
+              <DropdownItem>Save</DropdownItem>
+            </DropdownSubContent>
+          </DropdownSub>
           <DropdownItem>Edit</DropdownItem>
           <DropdownItem>Text</DropdownItem>
           <DropdownItem>Image</DropdownItem>

@@ -1,3 +1,4 @@
+// libs
 import { cn } from "@/utils/cn";
 import { cva } from "class-variance-authority";
 
@@ -5,17 +6,13 @@ const DropdownContentStyles = cva(
   cn(
     // base
     "z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto shadow-md outline-none",
-    "rounded-md bg-white"
+    "rounded-md bg-white p-1"
   )
 );
 const DropdownItemStyles = cva(
   cn(
     // base
-    "relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-    "bg-red-500_ p-2"
-
-    // variants
-    // "focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground"
+    "w-full relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
   ),
   {
     variants: {
@@ -23,10 +20,7 @@ const DropdownItemStyles = cva(
         contained: "bg-(--color) text-(--text-color) hover:bg-(--dark-color)",
         outlined:
           "ring hover:ring-2 ring-(--color) bg-transparent hover:bg-(--light-color) text-(--color)",
-        // light: "bg-transparent text-(--color) hover:bg-(--light-color)",
         flat: "text-(--color) bg-(--light-color)",
-        // ghost:
-        //   "bg-transparent border-2 border-(--color) text-(--color) hover:bg-(--color) hover:text-(--text-color)",
         faded:
           "ring hover:ring-2 ring-gray-100 text-(--color) bg-gray-200 hover:bg-gray-300",
       },
@@ -75,7 +69,7 @@ const DropdownLabelStyles = cva(
 const DropdownHighlightStyles = cva(
   cn(
     // base
-    "absolute inset-0 z-0 rounded-sm p-1 bg-blue-500"
+    "absolute inset-0 z-0 rounded-sm p-1"
   )
 );
 export const DropdownStyles = {

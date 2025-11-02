@@ -1,6 +1,7 @@
 "use client";
 
 // libs
+import { Children, cloneElement, isValidElement, ReactElement } from "react";
 import {
   DropdownMenuPortal as BaseDropdownMenuPortal,
   DropdownMenuSubContent as BaseDropdownMenuSubContent,
@@ -11,19 +12,14 @@ import { cn } from "@/utils/cn";
 import { Highlight } from "@/components/shared/Highlight";
 import { useDropdownMenu, useDropdownMenuSub } from "./DropdownContext";
 // types
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  ReactElement,
-  type FC,
-} from "react";
+import type { FC } from "react";
 import type {
   DropdownSubContentProps,
   DropdownItemProps,
 } from "./DropdownTypes";
+import type { VariantProps } from "class-variance-authority";
+// styles
 import { DropdownStyles } from "./DropdownStyles";
-import { VariantProps } from "class-variance-authority";
 
 const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
   const {
@@ -71,56 +67,56 @@ const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
     <AnimatePresence>
       {isOpen && (
         <BaseDropdownMenuPortal forceMount {...portalProps}>
-          <BaseDropdownMenuSubContent
-            asChild
-            forceMount
-            loop={loop}
-            onEscapeKeyDown={onEscapeKeyDown}
-            onPointerDownOutside={onPointerDownOutside}
-            onFocusOutside={onFocusOutside}
-            onInteractOutside={onInteractOutside}
-            sideOffset={sideOffset}
-            avoidCollisions={avoidCollisions}
-            collisionBoundary={collisionBoundary}
-            collisionPadding={collisionPadding}
-            arrowPadding={arrowPadding}
-            sticky={sticky}
-            hideWhenDetached={hideWhenDetached}
-            className={cn(DropdownStyles.content(), className)}
-            {...otherProps}
+          <Highlight
+            data-slot="dropdown-menu-highlight"
+            click={false}
+            controlledItems
+            hover
+            transition={
+              highlightProps?.transition || {
+                type: "spring",
+                stiffness: 350,
+                damping: 35,
+              }
+            }
+            value={highlightedValue}
+            className={cn(
+              DropdownStyles.highlight({}),
+              highlightProps?.className
+            )}
+            {...highlightProps}
           >
-            <motion.div
-              key="dropdown-menu-sub-content"
-              data-slot="dropdown-menu-sub-content"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={transition}
-              style={{ willChange: "opacity, transform", ...style }}
+            <BaseDropdownMenuSubContent
+              asChild
+              forceMount
+              loop={loop}
+              onEscapeKeyDown={onEscapeKeyDown}
+              onPointerDownOutside={onPointerDownOutside}
+              onFocusOutside={onFocusOutside}
+              onInteractOutside={onInteractOutside}
+              sideOffset={sideOffset}
+              avoidCollisions={avoidCollisions}
+              collisionBoundary={collisionBoundary}
+              collisionPadding={collisionPadding}
+              arrowPadding={arrowPadding}
+              sticky={sticky}
+              hideWhenDetached={hideWhenDetached}
+              className={cn(DropdownStyles.content(), className)}
+              {...otherProps}
             >
-              <Highlight
-                data-slot="dropdown-menu-highlight"
-                click={false}
-                controlledItems
-                hover
-                transition={
-                  highlightProps?.transition || {
-                    type: "spring",
-                    stiffness: 350,
-                    damping: 35,
-                  }
-                }
-                value={highlightedValue}
-                className={cn(
-                  DropdownStyles.highlight(),
-                  highlightProps?.className
-                )}
-                {...highlightProps}
+              <motion.div
+                key="dropdown-menu-sub-content"
+                data-slot="dropdown-menu-sub-content"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={transition}
+                style={{ willChange: "opacity, transform", ...style }}
               >
                 {childrenWithProps}
-              </Highlight>
-            </motion.div>
-          </BaseDropdownMenuSubContent>
+              </motion.div>
+            </BaseDropdownMenuSubContent>
+          </Highlight>
         </BaseDropdownMenuPortal>
       )}
     </AnimatePresence>

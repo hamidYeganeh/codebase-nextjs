@@ -1,8 +1,10 @@
 // libs
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../client";
-// stores
-import { User } from "@/store/useUserStore";
+// configs
+import { Endpoints } from "@/configs/api.config";
+// types
+import type { IUsers } from "@/types/UserTypes";
 
 export const userKeys = {
   all: ["users"] as const,
@@ -13,13 +15,8 @@ export const userKeys = {
 };
 
 export const getUsers = async () => {
-  const response = await apiClient.get("/users", {});
-  return response.data as {
-    users: Array<User>;
-    total: 208;
-    skip: 0;
-    limit: 30;
-  };
+  const response = await apiClient.get(Endpoints.users.list, {});
+  return response.data as IUsers;
 };
 
 export const useUsers = () => {

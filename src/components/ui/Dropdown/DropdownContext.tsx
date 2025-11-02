@@ -1,5 +1,5 @@
 // libs
-import { getStrictContext } from "@/lib/get-strict-context";
+import { getStrictContext } from "@/lib/getStrictContext";
 // types
 import type {
   DropdownMenuContextType,

@@ -3,7 +3,7 @@
 // libs
 import { NextIntlClientProvider, Messages } from "next-intl";
 import { useRouter } from "next/navigation";
-import { getStrictContext } from "@/lib/get-strict-context";
+import { getStrictContext } from "@/lib/getStrictContext";
 // configs
 import { LOCALES } from "@/configs/i18n.config";
 import { COOKIE_KEYS } from "@/configs/storage.config";

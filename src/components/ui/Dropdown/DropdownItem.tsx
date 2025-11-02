@@ -5,11 +5,12 @@ import { DropdownMenuItem as BaseDropdownItem } from "@radix-ui/react-dropdown-m
 import { motion } from "motion/react";
 import { useDataState } from "@/hooks/useDataState";
 import { useDropdownMenu } from "./DropdownContext";
+import { cn } from "@/utils/cn";
 // types
 import type { FC } from "react";
 import type { DropdownItemProps } from "./DropdownTypes";
 import { HighlightItem } from "@/components/shared/Highlight";
-import { cn } from "@/utils/cn";
+// style
 import { DropdownStyles } from "./DropdownStyles";
 
 const DropdownItem: FC<DropdownItemProps> = (props) => {
