@@ -1,19 +1,29 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, useTexture } from "@react-three/drei";
+import * as THREE from "three";
+import Button from "@/components/ui/Button/Button";
 
-function ImagePlane({ size }: { size: number }) {
+function ImagePlane({ size, position }: { size: number; position: THREE.Vector3 }) {
   const tex = useTexture("/icons/icon-512.png");
   // Keep aspect ratio using 1:1 for icon-512
   const width = size;
   const height = size;
   return (
-    <mesh position={[0, 0, -1]}> {/* Slightly in front of camera */}
+    <mesh position={position as unknown as [number, number, number]}> {/* Positioned via computed placement */}
       <planeGeometry args={[width / 100, height / 100]} />
       <meshBasicMaterial map={tex} transparent />
     </mesh>
   );
+}
+
+function SceneBridge({ onReady }: { onReady: (camera: THREE.Camera) => void }) {
+  const { camera } = useThree();
+  useEffect(() => {
+    onReady(camera);
+  }, [camera, onReady]);
+  return null;
 }
 
 export default function ARPage() {
@@ -22,6 +32,10 @@ export default function ARPage() {
   const [ready, setReady] = useState(false);
 
   const [size, setSize] = useState(240);
+  const [fixed, setFixed] = useState(false);
+  const [planePos, setPlanePos] = useState(() => new THREE.Vector3(0, 0, -1));
+  const cameraRef = useRef<THREE.Camera | null>(null);
+  const lastPointerRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const startCamera = async () => {
@@ -70,10 +84,17 @@ export default function ARPage() {
         className="absolute inset-0"
         gl={{ alpha: true }}
         camera={{ position: [0, 0, 1.5], fov: 60 }}
+        onPointerDown={(e) => {
+          lastPointerRef.current = { x: e.clientX, y: e.clientY };
+        }}
+        onPointerMove={(e) => {
+          lastPointerRef.current = { x: e.clientX, y: e.clientY };
+        }}
       >
+        <SceneBridge onReady={(cam) => (cameraRef.current = cam)} />
         <ambientLight intensity={1} />
-        <ImagePlane size={size} />
-        <OrbitControls enablePan enableRotate enableZoom />
+        <ImagePlane size={size} position={planePos} />
+        <OrbitControls enablePan={!fixed} enableRotate={!fixed} enableZoom={!fixed} />
       </Canvas>
 
       {/* Controls */}
@@ -91,6 +112,37 @@ export default function ARPage() {
             onChange={(e) => setSize(Number(e.target.value))}
             className="w-full"
           />
+        </div>
+        <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="text-xs opacity-70">
+            {fixed ? "Object fixed. Tap size to adjust." : "Tap screen to choose position, then Fix object."}
+          </div>
+          <Button
+            className="px-3 py-2 rounded bg-white/20 hover:bg-white/30 text-white"
+            onClick={() => {
+              const cam = cameraRef.current as THREE.PerspectiveCamera | THREE.Camera | null;
+              const pointer = lastPointerRef.current ?? {
+                x: window.innerWidth / 2,
+                y: window.innerHeight / 2,
+              };
+              if (!cam) return;
+              // Convert to NDC
+              const ndcX = (pointer.x / window.innerWidth) * 2 - 1;
+              const ndcY = -(pointer.y / window.innerHeight) * 2 + 1;
+              const ray = new THREE.Ray();
+              ray.origin.copy((cam as THREE.PerspectiveCamera).position);
+              const ndc = new THREE.Vector3(ndcX, ndcY, 0.5).unproject(cam as THREE.Camera);
+              ray.direction.copy(ndc.sub((cam as THREE.PerspectiveCamera).position)).normalize();
+              // Plane z = -1
+              const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 1);
+              const target = new THREE.Vector3();
+              ray.intersectPlane(plane, target);
+              setPlanePos(target);
+              setFixed(true);
+            }}
+          >
+            {fixed ? "Fixed" : "Fix object here"}
+          </Button>
         </div>
         {error && (
           <div className="mt-2 text-xs text-red-300">
