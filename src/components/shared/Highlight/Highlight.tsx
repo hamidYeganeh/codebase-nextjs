@@ -134,8 +134,9 @@ function Highlight<T extends React.ElementType = "div">({
   const render = React.useCallback(
     (children: React.ReactNode) => {
       if (mode === "parent") {
+        // Use a concrete div container to avoid polymorphic ref/prop typing issues
         return (
-          <Component
+          <div
             ref={localRef}
             data-slot="motion-highlight-container"
             style={{ position: "relative", zIndex: 1 }}
@@ -173,7 +174,7 @@ function Highlight<T extends React.ElementType = "div">({
               )}
             </AnimatePresence>
             {children}
-          </Component>
+          </div>
         );
       }
 
@@ -416,14 +417,14 @@ function HighlightItem<T extends React.ElementType>({
             )}
           </AnimatePresence>
 
-          <Component
+          <div
             data-slot="motion-highlight-item"
             style={{ position: "relative", zIndex: 1 }}
             className={className}
             {...dataAttributes}
           >
             {children}
-          </Component>
+          </div>
         </>
       );
     }
@@ -439,7 +440,7 @@ function HighlightItem<T extends React.ElementType>({
   }
 
   return enabled ? (
-    <Component
+    <div
       key={childValue}
       ref={localRef}
       data-slot="motion-highlight-item-container"
@@ -487,7 +488,7 @@ function HighlightItem<T extends React.ElementType>({
           "data-slot": "motion-highlight-item",
         }),
       })}
-    </Component>
+    </div>
   ) : (
     children
   );

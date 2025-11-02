@@ -30,7 +30,7 @@ const Button: FC<ButtonProps> = (props) => {
     ...otherProps
   } = props;
 
-  const buttonRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const rippleRef = useRef<RippleRef>(null);
 
   useImperativeHandle(ref, () => buttonRef.current! as HTMLButtonElement);
@@ -46,7 +46,7 @@ const Button: FC<ButtonProps> = (props) => {
   }
 
   return (
-    <Component
+    <button
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
@@ -67,7 +67,7 @@ const Button: FC<ButtonProps> = (props) => {
     >
       <Ripple parentRef={buttonRef} ref={rippleRef} />
       {children}
-    </Component>
+    </button>
   );
 };
 export default Button;
