@@ -8,12 +8,11 @@ import type { DropdownLabelProps } from "./DropdownTypes";
 import { DropdownStyles } from "./DropdownStyles";
 
 const DropdownLabel: FC<DropdownLabelProps> = (props) => {
-  const { children, inset = false, className, ...otherProps } = props;
+  const { children, inset = false, className, color, ...otherProps } = props;
   return (
     <BaseDropdownLabel
       data-slot="dropdown-menu-label"
-      data-inset={inset}
-      className={cn(DropdownStyles.label(), className)}
+      className={cn(DropdownStyles.label({ color, inset }), className)}
       {...otherProps}
     >
       {children}

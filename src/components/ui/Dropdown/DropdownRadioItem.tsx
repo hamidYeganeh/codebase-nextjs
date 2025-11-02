@@ -1,20 +1,22 @@
 "use client";
 
 // libs
-import { DropdownMenuItem as BaseDropdownItem } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuRadioItem as BaseDropdownRadioItem } from "@radix-ui/react-dropdown-menu";
 import { motion } from "motion/react";
 import { useDataState } from "@/hooks/useDataState";
+import { HighlightItem } from "@/components/shared/Highlight";
+import { cn } from "@/utils/cn";
 import { useDropdownMenu } from "./DropdownContext";
 // types
 import type { FC } from "react";
-import type { DropdownItemProps } from "./DropdownTypes";
-import { HighlightItem } from "@/components/shared/Highlight";
-import { cn } from "@/utils/cn";
+import type { DropdownRadioItemProps } from "./DropdownTypes";
+// styles
 import { DropdownStyles } from "./DropdownStyles";
 
-const DropdownItem: FC<DropdownItemProps> = (props) => {
+const DropdownRadioItem: FC<DropdownRadioItemProps> = (props) => {
   const {
     children,
+    value,
     disabled,
     onSelect,
     textValue,
@@ -23,6 +25,7 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
     size,
     variant,
     color,
+    highlightItemProps,
     ...otherProps
   } = props;
 
@@ -44,9 +47,11 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
       data-slot="dropdown-menu-highlight-item"
       activeClassName={cn(DropdownStyles.item({ variant, color }))}
       disabled={disabled}
+      {...highlightItemProps}
     >
-      <BaseDropdownItem
+      <BaseDropdownRadioItem
         ref={highlightedRef}
+        value={value}
         disabled={disabled}
         onSelect={onSelect}
         textValue={textValue}
@@ -55,11 +60,12 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
         className={cn(DropdownStyles.item({ size }), className)}
         {...otherProps}
       >
-        <motion.div data-slot="dropdown-menu-item" data-disabled={disabled}>
+        <motion.div data-slot="dropdown-menu-radio-item" data-disabled={disabled}>
           {children}
         </motion.div>
-      </BaseDropdownItem>
+      </BaseDropdownRadioItem>
     </HighlightItem>
   );
 };
-export default DropdownItem;
+
+export default DropdownRadioItem;

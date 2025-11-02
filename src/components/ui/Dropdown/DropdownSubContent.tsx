@@ -1,37 +1,41 @@
 "use client";
 
 // libs
-import { Children, cloneElement, isValidElement } from "react";
 import {
   DropdownMenuPortal as BaseDropdownMenuPortal,
-  DropdownMenuContent as BaseDropdownMenuContent,
+  DropdownMenuSubContent as BaseDropdownMenuSubContent,
 } from "@radix-ui/react-dropdown-menu";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/utils/cn";
 import { Highlight } from "@/components/shared/Highlight";
-import { useDropdownMenu } from "./DropdownContext";
+import { useDropdownMenu, useDropdownMenuSub } from "./DropdownContext";
 // types
-import type { ReactElement, FC } from "react";
-import type { DropdownContentProps, DropdownItemProps } from "./DropdownTypes";
-import type { VariantProps } from "class-variance-authority";
-// styles
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  type FC,
+} from "react";
+import type {
+  DropdownSubContentProps,
+  DropdownItemProps,
+} from "./DropdownTypes";
 import { DropdownStyles } from "./DropdownStyles";
+import { VariantProps } from "class-variance-authority";
 
-const DropdownContent: FC<DropdownContentProps> = (props) => {
+const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
   const {
     portalProps,
     children,
     loop,
-    onCloseAutoFocus,
     onEscapeKeyDown,
     onPointerDownOutside,
     onFocusOutside,
     onInteractOutside,
-    side,
     sideOffset = 4,
     className,
-    align,
     alignOffset,
     avoidCollisions,
     collisionBoundary,
@@ -48,7 +52,8 @@ const DropdownContent: FC<DropdownContentProps> = (props) => {
     ...otherProps
   } = props;
 
-  const { isOpen, highlightedValue } = useDropdownMenu();
+  const { isOpen } = useDropdownMenuSub();
+  const { highlightedValue } = useDropdownMenu();
 
   const childrenWithProps = Children.map(children, (child) => {
     const childElement = child as ReactElement<DropdownItemProps>;
@@ -57,9 +62,6 @@ const DropdownContent: FC<DropdownContentProps> = (props) => {
         size: childElement?.props.size ?? size,
         variant: childElement?.props?.variant ?? variant,
         color: childElement?.props?.color ?? color,
-        // radius: childElement?.props?.radius ?? radius,
-        // disabledAnimation:
-        //   childElement?.props?.disabledAnimation ?? disabledAnimation,
       } as Partial<VariantProps<typeof DropdownStyles.item>>);
     }
     return child;
@@ -69,18 +71,15 @@ const DropdownContent: FC<DropdownContentProps> = (props) => {
     <AnimatePresence>
       {isOpen && (
         <BaseDropdownMenuPortal forceMount {...portalProps}>
-          <BaseDropdownMenuContent
+          <BaseDropdownMenuSubContent
             asChild
+            forceMount
             loop={loop}
-            onCloseAutoFocus={onCloseAutoFocus}
             onEscapeKeyDown={onEscapeKeyDown}
             onPointerDownOutside={onPointerDownOutside}
             onFocusOutside={onFocusOutside}
             onInteractOutside={onInteractOutside}
-            side={side}
             sideOffset={sideOffset}
-            align={align}
-            alignOffset={alignOffset}
             avoidCollisions={avoidCollisions}
             collisionBoundary={collisionBoundary}
             collisionPadding={collisionPadding}
@@ -91,8 +90,8 @@ const DropdownContent: FC<DropdownContentProps> = (props) => {
             {...otherProps}
           >
             <motion.div
-              key="dropdown-menu-content"
-              data-slot="dropdown-menu-content"
+              key="dropdown-menu-sub-content"
+              data-slot="dropdown-menu-sub-content"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -121,10 +120,11 @@ const DropdownContent: FC<DropdownContentProps> = (props) => {
                 {childrenWithProps}
               </Highlight>
             </motion.div>
-          </BaseDropdownMenuContent>
+          </BaseDropdownMenuSubContent>
         </BaseDropdownMenuPortal>
       )}
     </AnimatePresence>
   );
 };
-export default DropdownContent;
+
+export default DropdownSubContent;

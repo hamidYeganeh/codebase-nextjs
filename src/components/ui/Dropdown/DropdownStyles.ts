@@ -19,6 +19,30 @@ const DropdownItemStyles = cva(
   ),
   {
     variants: {
+      variant: {
+        contained: "bg-(--color) text-(--text-color) hover:bg-(--dark-color)",
+        outlined:
+          "ring hover:ring-2 ring-(--color) bg-transparent hover:bg-(--light-color) text-(--color)",
+        // light: "bg-transparent text-(--color) hover:bg-(--light-color)",
+        flat: "text-(--color) bg-(--light-color)",
+        // ghost:
+        //   "bg-transparent border-2 border-(--color) text-(--color) hover:bg-(--color) hover:text-(--text-color)",
+        faded:
+          "ring hover:ring-2 ring-gray-100 text-(--color) bg-gray-200 hover:bg-gray-300",
+      },
+      color: {
+        primary:
+          "[--color:theme(colors.primary.500)] [--dark-color:theme(colors.primary.600)] [--light-color:theme(colors.primary.50)] [--text-color:theme(colors.primary.50)]",
+        success:
+          "[--color:theme(colors.success.500)] [--dark-color:theme(colors.success.600)] [--light-color:theme(colors.success.50)] [--text-color:theme(colors.success.50)]",
+        error:
+          "[--color:theme(colors.error.500)] [--dark-color:theme(colors.error.600)] [--light-color:theme(colors.error.50)] [--text-color:theme(colors.error.50)]",
+        warning:
+          "[--color:theme(colors.warning.500)] [--dark-color:theme(colors.warning.600)] [--light-color:theme(colors.warning.50)] [--text-color:theme(colors.warning.50)]",
+        info: "[--color:theme(colors.info.500)] [--dark-color:theme(colors.info.600)] [--light-color:theme(colors.info.50)] [--text-color:theme(colors.info.50)]",
+        default:
+          "[--color:theme(colors.gray.500)] [--dark-color:theme(colors.gray.600)] [--light-color:theme(colors.gray.50)] [--text-color:theme(colors.gray.50)]",
+      },
       size: {
         xs: "h-8 px-2 text-xs",
         sm: "h-9 px-3 text-sm",
@@ -30,7 +54,23 @@ const DropdownItemStyles = cva(
   }
 );
 const DropdownLabelStyles = cva(
-  "px-2 py-1.5 text-sm font-medium data-[inset]:pl-8"
+  cn("px-2 py-1.5 text-sm font-medium", "text-(--color)"),
+  {
+    variants: {
+      color: {
+        primary: "[--color:theme(colors.primary.500)]",
+        success: "[--color:theme(colors.success.500)]",
+        error: "[--color:theme(colors.error.500)]",
+        warning: "[--color:theme(colors.warning.500)]",
+        info: "[--color:theme(colors.info.500)]",
+        default: "[--color:theme(colors.gray.500)]",
+      },
+      inset: {
+        true: "pl-8",
+        false: "pl-2",
+      },
+    },
+  }
 );
 const DropdownHighlightStyles = cva(
   cn(

@@ -33,7 +33,12 @@ export default function Home() {
         <DropdownTrigger asChild>
           <Button variant={"flat"}>Open Dropdown</Button>
         </DropdownTrigger>
-        <DropdownContent size={"xl"} className="p-1 w-100 " align="start">
+        <DropdownContent
+          color="primary"
+          variant={"flat"}
+          className="p-1 w-100 "
+          align="start"
+        >
           <DropdownLabel>Label</DropdownLabel>
           <DropdownItem>File</DropdownItem>
           <DropdownItem>Edit</DropdownItem>

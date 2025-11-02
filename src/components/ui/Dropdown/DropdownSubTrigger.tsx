@@ -1,28 +1,29 @@
 "use client";
 
 // libs
-import { DropdownMenuItem as BaseDropdownItem } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuSubTrigger as BaseDropdownMenuSubTrigger } from "@radix-ui/react-dropdown-menu";
 import { motion } from "motion/react";
 import { useDataState } from "@/hooks/useDataState";
+import { HighlightItem } from "@/components/shared/Highlight";
+import { cn } from "@/utils/cn";
 import { useDropdownMenu } from "./DropdownContext";
 // types
 import type { FC } from "react";
-import type { DropdownItemProps } from "./DropdownTypes";
-import { HighlightItem } from "@/components/shared/Highlight";
-import { cn } from "@/utils/cn";
+import type { DropdownSubTriggerProps } from "./DropdownTypes";
+// styles
 import { DropdownStyles } from "./DropdownStyles";
 
-const DropdownItem: FC<DropdownItemProps> = (props) => {
+const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
   const {
     children,
     disabled,
-    onSelect,
     textValue,
     className,
     inset,
     size,
     variant,
     color,
+    highlightItemProps,
     ...otherProps
   } = props;
 
@@ -44,22 +45,26 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
       data-slot="dropdown-menu-highlight-item"
       activeClassName={cn(DropdownStyles.item({ variant, color }))}
       disabled={disabled}
+      {...highlightItemProps}
     >
-      <BaseDropdownItem
+      <BaseDropdownMenuSubTrigger
         ref={highlightedRef}
         disabled={disabled}
-        onSelect={onSelect}
         textValue={textValue}
         asChild
         data-inset={inset}
         className={cn(DropdownStyles.item({ size }), className)}
         {...otherProps}
       >
-        <motion.div data-slot="dropdown-menu-item" data-disabled={disabled}>
+        <motion.div
+          data-slot="dropdown-menu-sub-trigger"
+          data-disabled={disabled}
+        >
           {children}
         </motion.div>
-      </BaseDropdownItem>
+      </BaseDropdownMenuSubTrigger>
     </HighlightItem>
   );
 };
-export default DropdownItem;
+
+export default DropdownSubTrigger;
