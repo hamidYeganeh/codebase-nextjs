@@ -417,14 +417,14 @@ function HighlightItem<T extends React.ElementType>({
             )}
           </AnimatePresence>
 
-          <div
+          <Component
             data-slot="motion-highlight-item"
             style={{ position: "relative", zIndex: 1 }}
             className={className}
             {...dataAttributes}
           >
             {children}
-          </div>
+          </Component>
         </>
       );
     }
@@ -440,7 +440,7 @@ function HighlightItem<T extends React.ElementType>({
   }
 
   return enabled ? (
-    <div
+    <Component
       key={childValue}
       ref={localRef}
       data-slot="motion-highlight-item-container"
@@ -488,7 +488,7 @@ function HighlightItem<T extends React.ElementType>({
           "data-slot": "motion-highlight-item",
         }),
       })}
-    </div>
+    </Component>
   ) : (
     children
   );

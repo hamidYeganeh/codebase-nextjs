@@ -29,10 +29,7 @@ export const metadata: Metadata = {
       { url: "/icons/icon-512.png", type: "image/png", sizes: "512x512" },
       { url: "/icons/icon.svg", type: "image/svg+xml", sizes: "any" },
     ],
-    apple: [
-      // iOS requires PNG apple-touch-icon for proper install icon (no Safari badge)
-      { url: "/icons/apple-touch-icon.png", sizes: "180x180" },
-    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 export const viewport: Viewport = {

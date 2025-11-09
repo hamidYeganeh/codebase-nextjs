@@ -5,7 +5,7 @@ import { QueryProvider } from "@/providers/query.provider";
 // types
 import type { FC, PropsWithChildren } from "react";
 // libs
-import { getLocale, getMessages } from "next-intl/server";
+import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 import ServiceWorkerRegister from "@/components/pwa/ServiceWorkerRegister";
 
 interface ProvidersProps extends PropsWithChildren {}
@@ -15,11 +15,12 @@ export const Providers: FC<ProvidersProps> = async (props) => {
 
   const locale = await getLocale();
   const messages = await getMessages();
+  const timeZone = await getTimeZone();
 
   return (
     <>
       <QueryProvider>
-        <I18nProvider messages={messages} locale={locale}>
+        <I18nProvider messages={messages} locale={locale} timeZone={timeZone}>
           <ThemeProvider>
             <ServiceWorkerRegister />
             {children}
