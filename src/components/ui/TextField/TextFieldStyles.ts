@@ -54,7 +54,7 @@ export const TextFieldContainerStyles = cva(
 export const TextFieldInputStyles = cva(
   cn(
     // base
-    "peer w-full outline-none",
+    "peer w-full outline-none text-gray-900 dark:text-gray-100",
     "disabled:cursor-not-allowed disabled:opacity-60",
     // transitions
     "transition-colors motion-reduce:transition-none duration-200"
@@ -64,26 +64,30 @@ export const TextFieldInputStyles = cva(
       variant: {
         outlined: cn(
           "rounded-md border",
-          "bg-white",
+          "bg-white dark:bg-gray-900",
           // default border and hover/focus
-          "border-gray-300 focus:border-(--dark-color)",
+          "border-gray-300 dark:border-gray-700 focus:border-(--dark-color)",
           // error
           "data-[error=true]:border-error-500 focus:data-[error=true]:border-error-600",
+          // disabled
+          "disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:border-gray-200 dark:disabled:border-gray-800",
           // padding adjusts with adornments via data attributes
           "data-[start=true]:pl-10 data-[end=true]:pr-10"
         ),
         filled: cn(
           "rounded-md",
-          "bg-gray-100 focus:bg-gray-50",
+          "bg-gray-100 dark:bg-gray-800 focus:bg-gray-50 dark:focus:bg-gray-700",
           "border border-transparent focus:border-(--dark-color)",
           "data-[error=true]:border-error-500",
+          "disabled:bg-gray-100 dark:disabled:bg-gray-800",
           "data-[start=true]:pl-10 data-[end=true]:pr-10"
         ),
         standard: cn(
           "border-0 border-b",
           "bg-transparent",
-          "border-b-gray-300 focus:border-b-(--dark-color)",
+          "border-b-gray-300 dark:border-b-gray-700 focus:border-b-(--dark-color)",
           "data-[error=true]:border-b-error-500",
+          "disabled:border-b-gray-200 dark:disabled:border-b-gray-800",
           "data-[start=true]:pl-8 data-[end=true]:pr-8"
         ),
       },
@@ -123,16 +127,20 @@ export const TextFieldLabelStyles = cva(
           "data-[focused=true]:top-0 data-[focused=true]:left-3 data-[focused=true]:-translate-y-1/2 data-[focused=true]:scale-90 data-[focused=true]:text-xs",
           "data-[has-value=true]:top-0 data-[has-value=true]:left-3 data-[has-value=true]:-translate-y-1/2 data-[has-value=true]:scale-90 data-[has-value=true]:text-xs",
           // background notch illusion
-          "bg-white px-1"
+          "bg-white dark:bg-gray-900 px-1",
+          // color change on focus
+          "data-[focused=true]:text-(--dark-color)"
         ),
         filled: cn(
           "left-3 top-3",
           "data-[focused=true]:top-1 data-[focused=true]:scale-90 data-[focused=true]:text-xs",
+          "data-[focused=true]:text-(--dark-color)",
           "data-[has-value=true]:top-1 data-[has-value=true]:scale-90 data-[has-value=true]:text-xs"
         ),
         standard: cn(
           "left-0 top-1/2 -translate-y-1/2",
           "data-[focused=true]:top-0 data-[focused=true]:-translate-y-1/2 data-[focused=true]:scale-90 data-[focused=true]:text-xs",
+          "data-[focused=true]:text-(--dark-color)",
           "data-[has-value=true]:top-0 data-[has-value=true]:-translate-y-1/2 data-[has-value=true]:scale-90 data-[has-value=true]:text-xs"
         ),
       },

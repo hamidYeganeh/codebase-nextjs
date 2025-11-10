@@ -43,11 +43,13 @@ import {
 } from "@/components/ui/Dropdown";
 import { useI18n } from "@/hooks/useI18n";
 import { useTheme } from "@/hooks/useTheme";
+import { TextField } from "@/components/ui/TextField";
 
 export default function Home() {
   const { theme, setTheme, themes } = useTheme();
   const t = useTranslations("HomePage");
   const { setLocale, locales } = useI18n();
+  const [email, setEmail] = useState("");
 
   console.log(themes);
 
@@ -80,6 +82,23 @@ export default function Home() {
           </ListItem>
         ))}
       </List>
+
+      <div className="w-full mt-6">
+        <TextField
+          fullWidth
+          label={"Email"}
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          helperText={!email ? "Required" : "Looks good"}
+          error={!email}
+          variant="outlined"
+          color="primary"
+          size="md"
+          startAdornment={<span>@</span>}
+          endAdornment={<span>.com</span>}
+        />
+      </div>
     </div>
   );
 }

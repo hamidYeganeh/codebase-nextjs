@@ -108,9 +108,23 @@ const TextField: FC<TextFieldProps> = (props) => {
     className: cn(containerClassName, className),
   });
 
+  const inputSize: "small" | "medium" | "large" | undefined = useMemo(() => {
+    switch (size) {
+      case "xs":
+      case "sm":
+        return "small";
+      case "md":
+        return "medium";
+      case "lg":
+      case "xl":
+        return "large";
+      default:
+        return undefined;
+    }
+  }, [size]);
+
   const inputClasses = cn(
-    // TextFieldStyles.input({ variant, size }),
-    TextFieldStyles.input({ variant }),
+    TextFieldStyles.input({ variant, size: inputSize }),
     inputClassName
   );
 
@@ -118,7 +132,7 @@ const TextField: FC<TextFieldProps> = (props) => {
     variant,
     required,
     error,
-    // size,
+    size: inputSize,
   });
 
   const helperClasses = TextFieldStyles.helper({ error, margin });
@@ -127,6 +141,7 @@ const TextField: FC<TextFieldProps> = (props) => {
     "data-error": error ? "true" : undefined,
     "data-focused": effectiveFocused ? "true" : undefined,
     "data-has-value": hasValue ? "true" : undefined,
+    "data-disabled": disabled ? "true" : undefined,
   } as const;
 
   return (
@@ -189,6 +204,8 @@ const TextField: FC<TextFieldProps> = (props) => {
               onBlur={handleBlur}
               onChange={handleChange}
               aria-describedby={helperText ? helperId : undefined}
+              aria-invalid={error ? true : undefined}
+              aria-required={required ? true : undefined}
               rows={rows}
               {...(minRows ? { "data-min-rows": minRows } : {})}
               {...(maxRows ? { "data-max-rows": maxRows } : {})}
@@ -208,6 +225,8 @@ const TextField: FC<TextFieldProps> = (props) => {
               onBlur={handleBlur}
               onChange={handleChange}
               aria-describedby={helperText ? helperId : undefined}
+              aria-invalid={error ? true : undefined}
+              aria-required={required ? true : undefined}
               {...commonDataAttrs}
               data-start={hasStart ? "true" : undefined}
               data-end={hasEnd ? "true" : undefined}
@@ -232,6 +251,8 @@ const TextField: FC<TextFieldProps> = (props) => {
               value={value as any}
               defaultValue={defaultValue as any}
               aria-describedby={helperText ? helperId : undefined}
+              aria-invalid={error ? true : undefined}
+              aria-required={required ? true : undefined}
               {...rest}
               {...commonDataAttrs}
               data-start={hasStart ? "true" : undefined}
