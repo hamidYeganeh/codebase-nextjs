@@ -18,6 +18,8 @@ const List: FC<ListProps> = (props) => {
     variant,
     color,
     radius,
+    spacing,
+    disabledRipple,
     disabledAnimation,
     ...otherProps
   } = props;
@@ -32,13 +34,22 @@ const List: FC<ListProps> = (props) => {
         radius: childElement?.props?.radius ?? radius,
         disabledAnimation:
           childElement?.props?.disabledAnimation ?? disabledAnimation,
+        disabledRipple: childElement?.props?.disabledRipple ?? false,
       } as Partial<VariantProps<(typeof ListStyles)["item"]>>);
     }
     return child;
   });
 
   return (
-    <ul className={cn(className, ListStyles.base({}))} {...otherProps}>
+    <ul
+      className={cn(
+        className,
+        ListStyles.base({
+          spacing,
+        })
+      )}
+      {...otherProps}
+    >
       {childrenWithProps}
     </ul>
   );

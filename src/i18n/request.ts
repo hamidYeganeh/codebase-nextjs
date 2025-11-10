@@ -4,8 +4,8 @@ import { cookies } from "next/headers";
 // configs
 import { COOKIE_KEYS } from "@/configs/storage.config";
 import { DEFAULT_LOCALE } from "@/configs/i18n.config";
-
-type Locale = "en" | "de";
+// types
+import type { Locale } from "next-intl";
 
 export default getRequestConfig(async () => {
   const cookieStore = await cookies();

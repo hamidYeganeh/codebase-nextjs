@@ -45,6 +45,7 @@ interface IAppTheme {
   mode: keyof typeof THEME_MODES;
   setMode: (mode: IAppTheme["mode"]) => void;
   resolvedTheme?: string;
+  themes: (keyof typeof THEMES)[];
 }
 
 export const useAppTheme = (): IAppTheme => {
@@ -58,6 +59,7 @@ export const useAppTheme = (): IAppTheme => {
       mode: DEFAULT_THEME_MODE,
       setMode: () => {},
       resolvedTheme: undefined,
+      themes: Object.keys(THEMES) as (keyof typeof THEMES)[],
     };
   }
 
@@ -88,8 +90,16 @@ export const useAppTheme = (): IAppTheme => {
       mode: modeKey,
       setMode: handleSetMode,
       resolvedTheme: nextResolvedTheme,
+      themes: Object.keys(THEMES) as (keyof typeof THEMES)[],
     }),
-    [themeKey, modeKey, handleSetTheme, handleSetMode, nextResolvedTheme]
+    [
+      themeKey,
+      modeKey,
+      handleSetTheme,
+      handleSetMode,
+      nextResolvedTheme,
+      THEMES,
+    ]
   );
 };
 

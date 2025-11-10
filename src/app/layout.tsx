@@ -57,7 +57,7 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-800 dark:bg-primary-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

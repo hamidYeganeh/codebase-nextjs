@@ -6,7 +6,8 @@ import { QueryProvider } from "@/providers/query.provider";
 import type { FC, PropsWithChildren } from "react";
 // libs
 import { getLocale, getMessages, getTimeZone } from "next-intl/server";
-import ServiceWorkerRegister from "@/components/pwa/ServiceWorkerRegister";
+// components
+import { ServiceWorkerRegister } from "@/components/shared/Pwa/ServiceWorkerRegister";
 
 interface ProvidersProps extends PropsWithChildren {}
 

@@ -1,7 +1,20 @@
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/cn";
 
-const ListBaseStyles = cva(cn("flex flex-col gap-1"), { variants: {} });
+const ListBaseStyles = cva(cn("w-full flex flex-col! [&_li]:w-full"), {
+  variants: {
+    spacing: {
+      xs: "gap-0.5",
+      sm: "gap-1",
+      md: "gap-2",
+      lg: "gap-3",
+      xl: "gap-4",
+    },
+  },
+  defaultVariants: {
+    spacing: "md",
+  },
+});
 const ListItemStyles = cva(
   cn("relative overflow-hidden w-full select-none flex items-center gap-1.5"),
   {
@@ -51,6 +64,13 @@ const ListItemStyles = cva(
         false:
           "transition-transform-colors-opacity motion-reduce:transition-none duration-200",
       },
+    },
+    defaultVariants: {
+      variant: "contained",
+      color: "primary",
+      radius: "md",
+      size: "md",
+      disabledAnimation: false,
     },
   }
 );
