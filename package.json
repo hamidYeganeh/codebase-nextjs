@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:strict": "eslint . --max-warnings=0",
+    "lint-staged": "lint-staged",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky"
