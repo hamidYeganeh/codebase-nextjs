@@ -40,12 +40,20 @@ export interface DropdownContentProps
     VariantProps<typeof DropdownStyles.item> {
   portalProps?: Omit<BaseDropdownMenuPortalProps, 'forceMount'>;
   highlightProps?: Omit<HighlightProps, 'controlledItems' | 'enabled' | 'hover'>;
+  // Explicitly include variant props to satisfy consumers that destructure these
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
 export interface DropdownItemProps
   extends Omit<BaseDropdownMenuItemProps, 'color'>,
     VariantProps<typeof DropdownStyles.item> {
   highlightItemProps?: HighlightItemProps;
   inset?: boolean;
+  // Explicit variant props (optional) for clearer type availability
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
 export interface DropdownLabelProps
   extends Omit<BaseDropdownMenuLabelProps, 'color'>,
@@ -60,12 +68,18 @@ export interface DropdownCheckboxItemProps
     VariantProps<typeof DropdownStyles.item> {
   highlightItemProps?: HighlightItemProps;
   inset?: boolean;
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
 export interface DropdownRadioItemProps
   extends Omit<BaseDropdownMenuRadioItemProps, 'color'>,
     VariantProps<typeof DropdownStyles.item> {
   highlightItemProps?: HighlightItemProps;
   inset?: boolean;
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
 export type DropdownRadioGroupProps = BaseDropdownMenuRadioGroupProps;
 export type DropdownItemIndicatorProps = BaseDropdownMenuItemIndicatorProps &
@@ -77,6 +91,9 @@ export interface DropdownSubTriggerProps
     HTMLMotionProps<'div'> {
   highlightItemProps?: HighlightItemProps;
   inset?: boolean;
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
 export interface DropdownSubContentProps
   extends Omit<BaseDropdownMenuSubContentProps, 'forceMount' | 'asChild'>,
@@ -84,4 +101,7 @@ export interface DropdownSubContentProps
     VariantProps<typeof DropdownStyles.item> {
   portalProps?: Omit<BaseDropdownMenuPortalProps, 'forceMount'>;
   highlightProps?: Omit<HighlightProps, 'controlledItems' | 'enabled' | 'hover'>;
+  size?: VariantProps<typeof DropdownStyles.item>['size'];
+  variant?: VariantProps<typeof DropdownStyles.item>['variant'];
+  color?: VariantProps<typeof DropdownStyles.item>['color'];
 }
