@@ -48,7 +48,8 @@ export function cva<
     // Apply compound variants when all conditions match
     if (options?.compoundVariants) {
       for (const cv of options.compoundVariants) {
-        const { class: cvClassLegacy, className: cvClassName, ...conds } = cv as CompoundVariant<V>;
+        const { class: cvClassLegacy, className: cvClassName, ...rest } = cv as CompoundVariant<V>;
+        const conds: Partial<Record<keyof V, unknown>> = rest;
         const cvClass = cvClassName ?? cvClassLegacy;
         const keys = Object.keys(conds) as Array<keyof V>;
         const matches = keys.every((k) => {

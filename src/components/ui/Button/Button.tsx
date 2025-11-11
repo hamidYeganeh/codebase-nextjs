@@ -5,7 +5,7 @@ import { useImperativeHandle, useMemo, useRef } from 'react';
 import { Ripple } from '@/shared/Ripple';
 import { cn } from '@/utils/cn';
 // types
-import type { FC, MouseEvent, ElementType } from 'react';
+import type { FC, MouseEvent, ElementType, RefObject } from 'react';
 import type { RippleRef } from '@/shared/Ripple';
 import type { ButtonProps } from './ButtonTypes.d';
 // styles
@@ -33,12 +33,12 @@ const Button: FC<ButtonProps> = (props) => {
     ...otherProps
   } = props;
 
-  const buttonRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const rippleRef = useRef<RippleRef>(null);
 
   useImperativeHandle(ref, () => buttonRef.current!);
 
-  function handleClick(e: MouseEvent<HTMLElement>) {
+  function handleClick(e: MouseEvent<HTMLButtonElement>) {
     if (rippleRef.current && !disabledRipple) {
       rippleRef.current.createRipple(e);
     }
@@ -86,7 +86,7 @@ const Button: FC<ButtonProps> = (props) => {
       {...(href ? { href } : {})}
       {...otherProps}
     >
-      <Ripple parentRef={buttonRef} ref={rippleRef} />
+      <Ripple parentRef={buttonRef as unknown as RefObject<HTMLElement>} ref={rippleRef} />
       {loading ? (
         <span className="absolute inset-0 flex items-center justify-center">
           <span

@@ -26,6 +26,17 @@ const Tabs: FC<TabsProps> = (props) => {
 
   // defaultValue is only used for initial uncontrolled state; subsequent changes are ignored by design
 
+  // Narrow color to the allowed union for style helpers
+  const colorResolved = (color ?? 'default') as
+    | 'primary'
+    | 'success'
+    | 'error'
+    | 'warning'
+    | 'info'
+    | 'default'
+    | null
+    | undefined;
+
   const indexMap = useMemo(() => new Map(items.map((item, idx) => [item.value, idx])), [items]);
 
   const handleSelect = (val: string) => {
@@ -51,7 +62,7 @@ const Tabs: FC<TabsProps> = (props) => {
 
   return (
     <div
-      className={cn(className, TabsStyles.root({ size, radius, color, variant }))}
+      className={cn(className, TabsStyles.root({ size, radius, color: colorResolved, variant }))}
       {...otherProps}
     >
       <div
