@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 // libs
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import {
   getCoreRowModel,
   getSortedRowModel,
@@ -9,22 +9,18 @@ import {
   getFilteredRowModel,
   getExpandedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { cn } from "@/utils/cn";
+} from '@tanstack/react-table';
+import { cn } from '@/utils/cn';
 // types
-import type { FC } from "react";
-import type { TableProps } from "./TableTypes";
+// import type { FC } from "react";
+import type { TableProps } from './TableTypes';
 // styles
-import { TableStyles } from "./TableStyles";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
-import TableToolbar from "./TableToolbar";
+import { TableStyles } from './TableStyles';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
+import TableToolbar from './TableToolbar';
 
-const SortIndicator = ({ state }: { state: false | "asc" | "desc" }) => {
-  if (state === "asc") return <span aria-hidden>▲</span>;
-  if (state === "desc") return <span aria-hidden>▼</span>;
-  return null;
-};
+// Removed unused local SortIndicator; header renders its own indicator.
 
 const Table = <TData,>(props: TableProps<TData>) => {
   const {
@@ -33,10 +29,10 @@ const Table = <TData,>(props: TableProps<TData>) => {
     className,
     shadow,
     radius,
-    size = "md",
+    size = 'md',
     striped = true,
     hoverable = true,
-    align = "left",
+    align = 'left',
     enableSorting = true,
     enableColumnPinning = true,
     enableRowSelection = false,
@@ -51,10 +47,11 @@ const Table = <TData,>(props: TableProps<TData>) => {
   } = props as TableProps<TData>;
   // Avoid passing HTML "dir" (string) to Radix ScrollArea, which expects Direction
   const { dir: _dir, ...otherProps } = restProps as Record<string, unknown>;
+  void _dir;
 
   // Normalize possible nulls from external props to undefined for child components
-  const normalizedSize = (size ?? undefined) as "sm" | "md" | "lg" | undefined;
-  const normalizedAlign = (align ?? undefined) as "left" | "center" | "right" | undefined;
+  const normalizedSize = (size ?? undefined) as 'sm' | 'md' | 'lg' | undefined;
+  const normalizedAlign = (align ?? undefined) as 'left' | 'center' | 'right' | undefined;
 
   const table = useReactTable({
     data,
@@ -79,16 +76,14 @@ const Table = <TData,>(props: TableProps<TData>) => {
       className={cn(TableStyles.container({ shadow, radius }), className)}
       {...otherProps}
     >
-      {enableFiltering ? (
-        <TableToolbar table={table} placeholder={toolbarPlaceholder} />
-      ) : null}
+      {enableFiltering ? <TableToolbar table={table} placeholder={toolbarPlaceholder} /> : null}
 
-      <ScrollAreaPrimitive.Viewport className={cn("w-full")}>
+      <ScrollAreaPrimitive.Viewport className={cn('w-full')}>
         <table
           data-slot="table"
           className={cn(
             TableStyles.table({ size: normalizedSize, striped, hoverable }),
-            "min-w-full"
+            'min-w-full'
           )}
         >
           <TableHeader
@@ -106,7 +101,7 @@ const Table = <TData,>(props: TableProps<TData>) => {
             align={normalizedAlign}
             enableRowSelection={enableRowSelection}
             enableExpanding={enableExpanding}
-            renderSubComponent={renderSubComponent as any}
+            renderSubComponent={renderSubComponent}
           />
         </table>
       </ScrollAreaPrimitive.Viewport>
@@ -115,16 +110,16 @@ const Table = <TData,>(props: TableProps<TData>) => {
       <ScrollAreaPrimitive.Corner />
 
       {enablePagination ? (
-        <div className={cn("flex items-center justify-between px-3 py-2 border-t border-gray-200")}>
-          <div className={cn("text-xs text-gray-600")}>
+        <div className={cn('flex items-center justify-between px-3 py-2 border-t border-gray-200')}>
+          <div className={cn('text-xs text-gray-600')}>
             Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount() || 1}
           </div>
-          <div className={cn("flex items-center gap-2")}>
+          <div className={cn('flex items-center gap-2')}>
             <button
               data-slot="table-page-prev"
               className={cn(
-                "px-2 py-1 text-sm rounded-sm ring ring-gray-200 disabled:opacity-50",
-                "bg-white hover:bg-gray-50"
+                'px-2 py-1 text-sm rounded-sm ring ring-gray-200 disabled:opacity-50',
+                'bg-white hover:bg-gray-50'
               )}
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
@@ -134,8 +129,8 @@ const Table = <TData,>(props: TableProps<TData>) => {
             <button
               data-slot="table-page-next"
               className={cn(
-                "px-2 py-1 text-sm rounded-sm ring ring-gray-200 disabled:opacity-50",
-                "bg-white hover:bg-gray-50"
+                'px-2 py-1 text-sm rounded-sm ring ring-gray-200 disabled:opacity-50',
+                'bg-white hover:bg-gray-50'
               )}
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}

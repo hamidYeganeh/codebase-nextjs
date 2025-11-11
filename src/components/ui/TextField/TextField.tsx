@@ -1,16 +1,9 @@
-"use client";
+'use client';
 
-import {
-  FC,
-  useId,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { cn } from "@/utils/cn";
-import { TextFieldProps } from "./TextFieldTypes.d";
-import { TextFieldStyles } from "./TextFieldStyles";
+import { FC, useId, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { cn } from '@/utils/cn';
+import { TextFieldProps } from './TextFieldTypes.d';
+import { TextFieldStyles } from './TextFieldStyles';
 
 const TextField: FC<TextFieldProps> = (props) => {
   const {
@@ -20,7 +13,7 @@ const TextField: FC<TextFieldProps> = (props) => {
     value,
     defaultValue,
     onChange,
-    type = "text",
+    type = 'text',
     placeholder,
     autoComplete,
     readOnly,
@@ -58,9 +51,7 @@ const TextField: FC<TextFieldProps> = (props) => {
   const inputId = id ?? `tf-${generatedId}`;
   const helperId = `${inputId}-helper`;
 
-  const internalInputRef = useRef<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >(null);
+  const internalInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(null);
 
   useImperativeHandle(inputRef, () => internalInputRef.current!);
 
@@ -69,9 +60,7 @@ const TextField: FC<TextFieldProps> = (props) => {
   const hasInitialValue = useMemo(
     () =>
       (value !== undefined && value !== null && `${value}`.length > 0) ||
-      (defaultValue !== undefined &&
-        defaultValue !== null &&
-        `${defaultValue}`.length > 0),
+      (defaultValue !== undefined && defaultValue !== null && `${defaultValue}`.length > 0),
     [value, defaultValue]
   );
 
@@ -85,8 +74,10 @@ const TextField: FC<TextFieldProps> = (props) => {
     setIsFocused(false);
   }
 
-  function handleChange(e: any) {
-    if (onChange) onChange(e);
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
+    if (onChange) onChange(e as React.ChangeEvent<HTMLInputElement>);
     const v = e?.target?.value;
     setHasValue(v !== undefined && v !== null && `${v}`.length > 0);
   }
@@ -97,7 +88,7 @@ const TextField: FC<TextFieldProps> = (props) => {
   const hasEnd = !!endAdornment;
 
   // Placeholder handling: make label float usable when no placeholder provided
-  const effectivePlaceholder = showLabel && !placeholder ? " " : placeholder;
+  const effectivePlaceholder = showLabel && !placeholder ? ' ' : placeholder;
 
   const containerClasses = TextFieldStyles.container({
     variant,
@@ -108,25 +99,22 @@ const TextField: FC<TextFieldProps> = (props) => {
     className: cn(containerClassName, className),
   });
 
-  const inputSize: "small" | "medium" | "large" | undefined = useMemo(() => {
+  const inputSize: 'small' | 'medium' | 'large' | undefined = useMemo(() => {
     switch (size) {
-      case "xs":
-      case "sm":
-        return "small";
-      case "md":
-        return "medium";
-      case "lg":
-      case "xl":
-        return "large";
+      case 'xs':
+      case 'sm':
+        return 'small';
+      case 'md':
+        return 'medium';
+      case 'lg':
+      case 'xl':
+        return 'large';
       default:
         return undefined;
     }
   }, [size]);
 
-  const inputClasses = cn(
-    TextFieldStyles.input({ variant, size: inputSize }),
-    inputClassName
-  );
+  const inputClasses = cn(TextFieldStyles.input({ variant, size: inputSize }), inputClassName);
 
   const labelClasses = TextFieldStyles.label({
     variant,
@@ -138,19 +126,19 @@ const TextField: FC<TextFieldProps> = (props) => {
   const helperClasses = TextFieldStyles.helper({ error, margin });
 
   const commonDataAttrs = {
-    "data-error": error ? "true" : undefined,
-    "data-focused": effectiveFocused ? "true" : undefined,
-    "data-has-value": hasValue ? "true" : undefined,
-    "data-disabled": disabled ? "true" : undefined,
+    'data-error': error ? 'true' : undefined,
+    'data-focused': effectiveFocused ? 'true' : undefined,
+    'data-has-value': hasValue ? 'true' : undefined,
+    'data-disabled': disabled ? 'true' : undefined,
   } as const;
 
   return (
     <div
       className={containerClasses}
-      data-fullwidth={fullWidth ? "true" : undefined}
+      data-fullwidth={fullWidth ? 'true' : undefined}
       {...commonDataAttrs}
     >
-      <div className={cn("relative w-full")}>
+      <div className={cn('relative w-full')}>
         {showLabel && (
           <label htmlFor={inputId} className={labelClasses} {...labelProps}>
             {label}
@@ -158,11 +146,11 @@ const TextField: FC<TextFieldProps> = (props) => {
         )}
 
         {/* Input wrapper to accommodate adornments */}
-        <div className={cn("relative w-full")}>
+        <div className={cn('relative w-full')}>
           {hasStart && (
             <span
               className={cn(
-                "absolute left-2 top-1/2 -translate-y-1/2 text-gray-500",
+                'absolute left-2 top-1/2 -translate-y-1/2 text-gray-500'
                 // size === "large"
                 //   ? "text-lg"
                 //   : size === "small"
@@ -177,7 +165,7 @@ const TextField: FC<TextFieldProps> = (props) => {
           {hasEnd && (
             <span
               className={cn(
-                "absolute right-2 top-1/2 -translate-y-1/2 text-gray-500",
+                'absolute right-2 top-1/2 -translate-y-1/2 text-gray-500'
                 // size === "large"
                 //   ? "text-lg"
                 //   : size === "small"
@@ -193,7 +181,7 @@ const TextField: FC<TextFieldProps> = (props) => {
             <textarea
               id={inputId}
               name={name}
-              ref={internalInputRef as any}
+              ref={internalInputRef as React.Ref<HTMLTextAreaElement>}
               className={inputClasses}
               placeholder={effectivePlaceholder}
               autoComplete={autoComplete}
@@ -207,17 +195,17 @@ const TextField: FC<TextFieldProps> = (props) => {
               aria-invalid={error ? true : undefined}
               aria-required={required ? true : undefined}
               rows={rows}
-              {...(minRows ? { "data-min-rows": minRows } : {})}
-              {...(maxRows ? { "data-max-rows": maxRows } : {})}
+              {...(minRows ? { 'data-min-rows': minRows } : {})}
+              {...(maxRows ? { 'data-max-rows': maxRows } : {})}
               {...commonDataAttrs}
-              data-start={hasStart ? "true" : undefined}
-              data-end={hasEnd ? "true" : undefined}
+              data-start={hasStart ? 'true' : undefined}
+              data-end={hasEnd ? 'true' : undefined}
             />
           ) : select ? (
             <select
               id={inputId}
               name={name}
-              ref={internalInputRef as any}
+              ref={internalInputRef as React.Ref<HTMLSelectElement>}
               className={inputClasses}
               disabled={disabled}
               required={required}
@@ -228,8 +216,8 @@ const TextField: FC<TextFieldProps> = (props) => {
               aria-invalid={error ? true : undefined}
               aria-required={required ? true : undefined}
               {...commonDataAttrs}
-              data-start={hasStart ? "true" : undefined}
-              data-end={hasEnd ? "true" : undefined}
+              data-start={hasStart ? 'true' : undefined}
+              data-end={hasEnd ? 'true' : undefined}
             >
               {children}
             </select>
@@ -237,7 +225,7 @@ const TextField: FC<TextFieldProps> = (props) => {
             <input
               id={inputId}
               name={name}
-              ref={internalInputRef as any}
+              ref={internalInputRef as React.Ref<HTMLInputElement>}
               className={inputClasses}
               type={type}
               placeholder={effectivePlaceholder}
@@ -248,15 +236,15 @@ const TextField: FC<TextFieldProps> = (props) => {
               onFocus={handleFocus}
               onBlur={handleBlur}
               onChange={handleChange}
-              value={value as any}
-              defaultValue={defaultValue as any}
+              value={value}
+              defaultValue={defaultValue}
               aria-describedby={helperText ? helperId : undefined}
               aria-invalid={error ? true : undefined}
               aria-required={required ? true : undefined}
               {...rest}
               {...commonDataAttrs}
-              data-start={hasStart ? "true" : undefined}
-              data-end={hasEnd ? "true" : undefined}
+              data-start={hasStart ? 'true' : undefined}
+              data-end={hasEnd ? 'true' : undefined}
             />
           )}
         </div>

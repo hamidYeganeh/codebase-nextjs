@@ -1,19 +1,12 @@
-import { VariantProps } from "class-variance-authority";
-import type {
-  ComponentPropsWithRef,
-  ComponentPropsWithoutRef,
-  ReactNode,
-  Ref,
-} from "react";
-import { TextFieldStyles } from "./TextFieldStyles";
+import { VariantProps } from 'class-variance-authority';
+import type { ComponentPropsWithRef, ComponentPropsWithoutRef, ReactNode, Ref } from 'react';
+import { TextFieldStyles } from './TextFieldStyles';
 
-interface IHTMLInputProps
-  extends Omit<ComponentPropsWithRef<"input">, "color" | "size"> {}
+export type HTMLInputProps = Omit<ComponentPropsWithRef<'input'>, 'color' | 'size'>;
 
-interface ITextFieldVariants
-  extends VariantProps<(typeof TextFieldStyles)["container"]> {}
+export type TextFieldVariants = VariantProps<(typeof TextFieldStyles)['container']>;
 
-export interface TextFieldProps extends IHTMLInputProps, ITextFieldVariants {
+export interface TextFieldProps extends HTMLInputProps, TextFieldVariants {
   label?: ReactNode;
   helperText?: ReactNode;
   error?: boolean;
@@ -21,7 +14,7 @@ export interface TextFieldProps extends IHTMLInputProps, ITextFieldVariants {
   disabled?: boolean;
   fullWidth?: boolean;
   focused?: boolean;
-  margin?: "none" | "dense" | "normal";
+  margin?: 'none' | 'dense' | 'normal';
 
   multiline?: boolean;
   rows?: number;
@@ -38,7 +31,7 @@ export interface TextFieldProps extends IHTMLInputProps, ITextFieldVariants {
 
   // className additions per sub-part
   inputClassName?: string;
-  labelProps?: ComponentPropsWithoutRef<"label">;
-  helperTextProps?: ComponentPropsWithoutRef<"p">;
+  labelProps?: ComponentPropsWithoutRef<'label'>;
+  helperTextProps?: ComponentPropsWithoutRef<'p'>;
   containerClassName?: string;
 }

@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
 // libs
-import { useImperativeHandle, useRef } from "react";
-import { Ripple } from "@/shared/Ripple";
-import { cn } from "@/utils/cn";
+import { useImperativeHandle, useRef } from 'react';
+import { Ripple } from '@/shared/Ripple';
+import { cn } from '@/utils/cn';
 // types
-import type { FC, MouseEvent } from "react";
-import type { RippleRef } from "@/shared/Ripple";
-import type { ButtonProps } from "./ButtonTypes.d";
+import type { FC, MouseEvent } from 'react';
+import type { RippleRef } from '@/shared/Ripple';
+import type { ButtonProps } from './ButtonTypes.d';
 // styles
-import { ButtonStyles } from "./ButtonStyles";
+import { ButtonStyles } from './ButtonStyles';
 
 const Button: FC<ButtonProps> = (props) => {
   const {
@@ -24,8 +24,6 @@ const Button: FC<ButtonProps> = (props) => {
     className,
     fullWidth,
     disabledAnimation,
-    as: Component = "button",
-    href,
     loading = false,
     ...otherProps
   } = props;
@@ -63,7 +61,6 @@ const Button: FC<ButtonProps> = (props) => {
       )}
       disabled={loading}
       {...otherProps}
-      {...(href ? { href } : {})}
     >
       <Ripple parentRef={buttonRef} ref={rippleRef} />
       {children}

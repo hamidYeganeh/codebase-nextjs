@@ -1,18 +1,16 @@
-import { VariantProps } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { RadioStyles } from "./RadioStyles";
+import { VariantProps } from 'class-variance-authority';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { RadioStyles } from './RadioStyles';
 
-interface IHTMLInputProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size" | "color"> {}
+export type HTMLInputProps = Omit<ComponentPropsWithoutRef<'input'>, 'size' | 'color'>;
 
-interface IRadioVariants
-  extends VariantProps<(typeof RadioStyles)["circle"]> {}
+export type RadioVariants = VariantProps<(typeof RadioStyles)['circle']>;
 
-export interface RadioProps extends IHTMLInputProps, IRadioVariants {
+export interface RadioProps extends HTMLInputProps, RadioVariants {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
   label?: ReactNode;
-  labelProps?: ComponentPropsWithoutRef<"label">;
+  labelProps?: ComponentPropsWithoutRef<'label'>;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

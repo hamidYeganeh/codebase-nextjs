@@ -1,25 +1,22 @@
-"use client";
+'use client';
 
 // libs
-import { Children, cloneElement, isValidElement, ReactElement } from "react";
+import { Children, cloneElement, isValidElement, ReactElement } from 'react';
 import {
   DropdownMenuPortal as BaseDropdownMenuPortal,
   DropdownMenuSubContent as BaseDropdownMenuSubContent,
-} from "@radix-ui/react-dropdown-menu";
-import { AnimatePresence } from "motion/react";
-import { motion } from "motion/react";
-import { cn } from "@/utils/cn";
-import { Highlight } from "@/components/shared/Highlight";
-import { useDropdownMenu, useDropdownMenuSub } from "./DropdownContext";
+} from '@radix-ui/react-dropdown-menu';
+import { AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
+import { cn } from '@/utils/cn';
+import { Highlight } from '@/components/shared/Highlight';
+import { useDropdownMenu, useDropdownMenuSub } from './DropdownContext';
 // types
-import type { FC } from "react";
-import type {
-  DropdownSubContentProps,
-  DropdownItemProps,
-} from "./DropdownTypes";
-import type { VariantProps } from "class-variance-authority";
+import type { FC } from 'react';
+import type { DropdownSubContentProps, DropdownItemProps } from './DropdownTypes';
+import type { VariantProps } from 'class-variance-authority';
 // styles
-import { DropdownStyles } from "./DropdownStyles";
+import { DropdownStyles } from './DropdownStyles';
 
 const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
   const {
@@ -74,16 +71,13 @@ const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
             hover
             transition={
               highlightProps?.transition || {
-                type: "spring",
+                type: 'spring',
                 stiffness: 350,
                 damping: 35,
               }
             }
             value={highlightedValue}
-            className={cn(
-              DropdownStyles.highlight({}),
-              highlightProps?.className
-            )}
+            className={cn(DropdownStyles.highlight({}), highlightProps?.className)}
             {...highlightProps}
           >
             <BaseDropdownMenuSubContent
@@ -95,6 +89,7 @@ const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
               onFocusOutside={onFocusOutside}
               onInteractOutside={onInteractOutside}
               sideOffset={sideOffset}
+              alignOffset={alignOffset}
               avoidCollisions={avoidCollisions}
               collisionBoundary={collisionBoundary}
               collisionPadding={collisionPadding}
@@ -111,7 +106,7 @@ const DropdownSubContent: FC<DropdownSubContentProps> = (props) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={transition}
-                style={{ willChange: "opacity, transform", ...style }}
+                style={{ willChange: 'opacity, transform', ...style }}
               >
                 {childrenWithProps}
               </motion.div>

@@ -1,10 +1,10 @@
-import { VariantProps } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { ChipStyles } from "./ChipStyles";
+import { VariantProps } from 'class-variance-authority';
+import type { ReactNode } from 'react';
+import { ChipStyles } from './ChipStyles';
 
-interface IChipVariants extends VariantProps<(typeof ChipStyles)["base"]> {}
+export type ChipVariants = VariantProps<(typeof ChipStyles)['base']>;
 
-export interface ChipProps extends IChipVariants {
+export interface ChipProps extends ChipVariants {
   label: ReactNode;
   onClick?: () => void;
   onDelete?: () => void;

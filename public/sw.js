@@ -72,6 +72,8 @@ self.addEventListener('fetch', (event) => {
           cache.put(request, networkResponse.clone());
           return networkResponse;
         } catch (err) {
+          console.log(err);
+          
           // Try the exact page from cache
           const pageCache = await caches.open(PAGES_CACHE);
           const cached = await pageCache.match(request);
@@ -162,6 +164,8 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse;
         } catch (err) {
+          console.log(err);
+          
           const cached = await cache.match(request);
           if (cached) return cached;
           return new Response(JSON.stringify({ error: 'Offline' }), { status: 503, headers: { 'Content-Type': 'application/json' } });

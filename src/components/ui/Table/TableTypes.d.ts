@@ -1,18 +1,18 @@
 // types
-import type { ColumnDef } from "@tanstack/react-table";
-import type { VariantProps } from "class-variance-authority";
-import type { ComponentPropsWithRef } from "react";
+import type { ColumnDef, Row } from '@tanstack/react-table';
+import type { VariantProps } from 'class-variance-authority';
+import type { ComponentPropsWithRef, ReactNode } from 'react';
 // styles
-import { TableStyles } from "./TableStyles";
+import { TableStyles } from './TableStyles';
 
 export interface TableProps<TData>
-  extends Omit<ComponentPropsWithRef<"div">, "children">,
-    VariantProps<typeof TableStyles["container"]>,
-    VariantProps<typeof TableStyles["table"]>,
-    VariantProps<typeof TableStyles["cell"]>,
-    VariantProps<typeof TableStyles["headerCell"]> {
+  extends Omit<ComponentPropsWithRef<'div'>, 'children'>,
+    VariantProps<(typeof TableStyles)['container']>,
+    VariantProps<(typeof TableStyles)['table']>,
+    VariantProps<(typeof TableStyles)['cell']>,
+    VariantProps<(typeof TableStyles)['headerCell']> {
   data: TData[];
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData, unknown>[];
   enableSorting?: boolean;
   enableColumnPinning?: boolean;
   enableRowSelection?: boolean;
@@ -20,7 +20,7 @@ export interface TableProps<TData>
   enablePagination?: boolean;
   pageSize?: number;
   enableFiltering?: boolean;
-  renderSubComponent?: (row: any) => React.ReactNode;
+  renderSubComponent?: (row: Row<TData>) => ReactNode;
   toolbarPlaceholder?: string;
   getSubRows?: (row: TData) => TData[] | undefined;
 }

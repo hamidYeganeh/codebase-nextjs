@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 // libs
-import { Children, cloneElement, isValidElement, ReactElement } from "react";
-import { cn } from "@/utils/cn";
+import { Children, cloneElement, isValidElement, ReactElement } from 'react';
+import { cn } from '@/utils/cn';
 // types
-import type { FC } from "react";
-import type { ListItemProps, ListProps } from "./ListTypes";
-import type { VariantProps } from "class-variance-authority";
+import type { FC } from 'react';
+import type { ListItemProps, ListProps } from './ListTypes';
+import type { VariantProps } from 'class-variance-authority';
 // styles
-import { ListStyles } from "./ListStyles";
+import { ListStyles } from './ListStyles';
 
 const List: FC<ListProps> = (props) => {
   const {
@@ -32,10 +32,9 @@ const List: FC<ListProps> = (props) => {
         size: childElement?.props.size ?? size,
         variant: childElement?.props?.variant ?? variant,
         radius: childElement?.props?.radius ?? radius,
-        disabledAnimation:
-          childElement?.props?.disabledAnimation ?? disabledAnimation,
-        disabledRipple: childElement?.props?.disabledRipple ?? false,
-      } as Partial<VariantProps<(typeof ListStyles)["item"]>>);
+        disabledAnimation: childElement?.props?.disabledAnimation ?? disabledAnimation,
+        disabledRipple: childElement?.props?.disabledRipple ?? disabledRipple,
+      } as Partial<VariantProps<(typeof ListStyles)['item']>>);
     }
     return child;
   });

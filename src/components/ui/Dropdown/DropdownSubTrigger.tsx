@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
 // libs
-import { DropdownMenuSubTrigger as BaseDropdownMenuSubTrigger } from "@radix-ui/react-dropdown-menu";
-import { motion } from "motion/react";
-import { useDataState } from "@/hooks/useDataState";
-import { HighlightItem } from "@/components/shared/Highlight";
-import { cn } from "@/utils/cn";
-import { useDropdownMenu } from "./DropdownContext";
+import { DropdownMenuSubTrigger as BaseDropdownMenuSubTrigger } from '@radix-ui/react-dropdown-menu';
+import { motion } from 'motion/react';
+import { useDataState } from '@/hooks/useDataState';
+import { HighlightItem } from '@/components/shared/Highlight';
+import { cn } from '@/utils/cn';
+import { useDropdownMenu } from './DropdownContext';
 // types
-import type { FC } from "react";
-import type { DropdownSubTriggerProps } from "./DropdownTypes";
+import type { FC } from 'react';
+import type { DropdownSubTriggerProps } from './DropdownTypes';
 // styles
-import { DropdownStyles } from "./DropdownStyles";
+import { DropdownStyles } from './DropdownStyles';
 
 const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
   const {
@@ -28,17 +28,13 @@ const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
   } = props;
 
   const { setHighlightedValue } = useDropdownMenu();
-  const [, highlightedRef] = useDataState<HTMLDivElement>(
-    "highlighted",
-    undefined,
-    (value) => {
-      if (value === true) {
-        const el = highlightedRef.current;
-        const v = el?.dataset.value || el?.id || null;
-        if (v) setHighlightedValue(v);
-      }
+  const [, highlightedRef] = useDataState<HTMLDivElement>('highlighted', undefined, (value) => {
+    if (value === true) {
+      const el = highlightedRef.current;
+      const v = el?.dataset.value || el?.id || null;
+      if (v) setHighlightedValue(v);
     }
-  );
+  });
 
   return (
     <HighlightItem
@@ -52,13 +48,10 @@ const DropdownSubTrigger: FC<DropdownSubTriggerProps> = (props) => {
         textValue={textValue}
         asChild
         data-inset={inset}
-        className={cn(DropdownStyles.item({}), className)}
+        className={cn(DropdownStyles.item({ variant, color, size }), className)}
         {...otherProps}
       >
-        <motion.div
-          data-slot="dropdown-menu-sub-trigger"
-          data-disabled={disabled}
-        >
+        <motion.div data-slot="dropdown-menu-sub-trigger" data-disabled={disabled}>
           {children}
         </motion.div>
       </BaseDropdownMenuSubTrigger>

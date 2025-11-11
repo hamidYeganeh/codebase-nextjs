@@ -1,18 +1,16 @@
-import { VariantProps } from "class-variance-authority";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { SwitchStyles } from "./SwitchStyles";
+import { VariantProps } from 'class-variance-authority';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { SwitchStyles } from './SwitchStyles';
 
-interface IHTMLInputProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size" | "color"> {}
+export type HTMLInputProps = Omit<ComponentPropsWithoutRef<'input'>, 'size' | 'color'>;
 
-interface ISwitchVariants
-  extends VariantProps<(typeof SwitchStyles)["track"]> {}
+export type SwitchVariants = VariantProps<(typeof SwitchStyles)['track']>;
 
-export interface SwitchProps extends IHTMLInputProps, ISwitchVariants {
+export interface SwitchProps extends HTMLInputProps, SwitchVariants {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
   label?: ReactNode;
-  labelProps?: ComponentPropsWithoutRef<"label">;
+  labelProps?: ComponentPropsWithoutRef<'label'>;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

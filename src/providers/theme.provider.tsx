@@ -1,29 +1,26 @@
-"use client";
+'use client';
 
 // libs
-import { ThemeProvider as NextThemeProvider, useTheme } from "next-themes";
-import { useMemo, useCallback } from "react";
+import { ThemeProvider as NextThemeProvider, useTheme } from 'next-themes';
+import { useMemo, useCallback } from 'react';
 // configs
-import { LOCAL_STORAGE_KEYS } from "@/configs/storage.config";
+import { LOCAL_STORAGE_KEYS } from '@/configs/storage.config';
 import {
   DEFAULT_THEME,
   DEFAULT_THEME_MODE,
   THEME_ATTRIBUTE,
   THEME_MODES,
   THEMES,
-} from "@/configs/theme.config";
+} from '@/configs/theme.config';
 // types
-import type { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from 'react';
 
 const THEMES_LIST = Object.values(THEMES).flatMap((baseTheme) => [
   `${baseTheme.toLowerCase()}-${THEME_MODES.LIGHT.toLowerCase()}`,
   `${baseTheme.toLowerCase()}-${THEME_MODES.DARK.toLowerCase()}`,
 ]);
 
-const getFullThemeName = (
-  themeKey: keyof typeof THEMES,
-  modeKey: keyof typeof THEME_MODES
-) => {
+const getFullThemeName = (themeKey: keyof typeof THEMES, modeKey: keyof typeof THEME_MODES) => {
   const baseThemeValue = THEMES[themeKey]?.toLowerCase();
   const modeValue = THEME_MODES[modeKey]?.toLowerCase();
   return `${baseThemeValue}-${modeValue}`;
@@ -41,29 +38,20 @@ const getModeKeyFromValue = (modeValue: string) =>
 
 interface IAppTheme {
   theme: keyof typeof THEMES;
-  setTheme: (theme: IAppTheme["theme"]) => void;
+  setTheme: (theme: IAppTheme['theme']) => void;
   mode: keyof typeof THEME_MODES;
-  setMode: (mode: IAppTheme["mode"]) => void;
+  setMode: (mode: IAppTheme['mode']) => void;
   resolvedTheme?: string;
   themes: (keyof typeof THEMES)[];
 }
 
 export const useAppTheme = (): IAppTheme => {
-  const { setTheme: setNextTheme, resolvedTheme: nextResolvedTheme } =
-    useTheme();
+  const { setTheme: setNextTheme, resolvedTheme: nextResolvedTheme } = useTheme();
 
-  if (typeof nextResolvedTheme === "undefined") {
-    return {
-      theme: DEFAULT_THEME,
-      setTheme: () => {},
-      mode: DEFAULT_THEME_MODE,
-      setMode: () => {},
-      resolvedTheme: undefined,
-      themes: Object.keys(THEMES) as (keyof typeof THEMES)[],
-    };
-  }
-
-  const [themeValue, modeValue] = nextResolvedTheme.split("-");
+  const [themeValue, modeValue] = (
+    nextResolvedTheme ??
+    `${THEMES[DEFAULT_THEME].toLowerCase()}-${THEME_MODES[DEFAULT_THEME_MODE].toLowerCase()}`
+  ).split('-');
   const themeKey = getThemeKeyFromValue(themeValue);
   const modeKey = getModeKeyFromValue(modeValue);
 
@@ -92,18 +80,11 @@ export const useAppTheme = (): IAppTheme => {
       resolvedTheme: nextResolvedTheme,
       themes: Object.keys(THEMES) as (keyof typeof THEMES)[],
     }),
-    [
-      themeKey,
-      modeKey,
-      handleSetTheme,
-      handleSetMode,
-      nextResolvedTheme,
-      THEMES,
-    ]
+    [themeKey, modeKey, handleSetTheme, handleSetMode, nextResolvedTheme]
   );
 };
 
-interface ThemeProviderProps extends PropsWithChildren {}
+type ThemeProviderProps = PropsWithChildren;
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const defaultFullTheme = getFullThemeName(DEFAULT_THEME, DEFAULT_THEME_MODE);

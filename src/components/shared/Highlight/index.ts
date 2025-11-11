@@ -1,4 +1,4 @@
-export { Highlight, HighlightItem, useHighlight } from "./Highlight";
+export { Highlight, HighlightItem, useHighlight } from './Highlight';
 export type {
   Bounds,
   ExtendedChildProps,
@@ -10,4 +10,4 @@ export type {
   ControlledChildrenModeHighlightProps,
   UncontrolledParentModeHighlightProps,
   UncontrolledChildrenModeHighlightProps,
-} from "./HighlightTypes.d";
+} from './HighlightTypes';

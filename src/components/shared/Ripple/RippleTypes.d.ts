@@ -1,4 +1,4 @@
-import React from "react";
+import type { RefObject } from 'react';
 
 export interface RippleRef {
   /**
@@ -9,5 +9,5 @@ export interface RippleRef {
 }
 
 export interface RippleProps {
-  parentRef: Ref<HTMLElement>;
+  parentRef: RefObject<HTMLElement | null>;
 }
