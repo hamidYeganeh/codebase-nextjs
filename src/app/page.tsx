@@ -44,12 +44,33 @@ import {
 import { useI18n } from "@/hooks/useI18n";
 import { useTheme } from "@/hooks/useTheme";
 import { TextField } from "@/components/ui/TextField";
+import { Table } from "@/components/ui/Table";
+import type { ColumnDef } from "@tanstack/react-table";
 
 export default function Home() {
   const { theme, setTheme, themes } = useTheme();
   const t = useTranslations("HomePage");
   const { setLocale, locales } = useI18n();
   const [email, setEmail] = useState("");
+  type Person = {
+    id: number;
+    name: string;
+    age: number;
+    role: string;
+    subRows?: Person[];
+  };
+
+  const people: Person[] = [
+    { id: 1, name: "Ava", age: 28, role: "Admin", subRows: [{ id: 11, name: "Ava Jr.", age: 3, role: "Child" }] },
+    { id: 2, name: "Noah", age: 34, role: "User" },
+    { id: 3, name: "Liam", age: 42, role: "Manager" },
+  ];
+
+  const columns: ColumnDef<Person>[] = [
+    { accessorKey: "name", header: "Name" },
+    { accessorKey: "age", header: "Age" },
+    { accessorKey: "role", header: "Role" },
+  ];
 
   console.log(themes);
 
@@ -97,6 +118,30 @@ export default function Home() {
           size="md"
           startAdornment={<span>@</span>}
           endAdornment={<span>.com</span>}
+        />
+      </div>
+
+      <div className="w-full mt-6">
+        <Table
+          data={people}
+          columns={columns}
+          size="md"
+          striped
+          hoverable
+          radius="md"
+          shadow="sm"
+          enableSorting
+          enableFiltering
+          enablePagination
+          pageSize={5}
+          enableRowSelection
+          enableExpanding
+          enableColumnPinning
+          toolbarPlaceholder="Filter people"
+          getSubRows={(row) => row.subRows}
+          renderSubComponent={(row) => (
+            <div className="text-sm text-gray-700">Expanded details for {row.original.name}</div>
+          )}
         />
       </div>
     </div>
