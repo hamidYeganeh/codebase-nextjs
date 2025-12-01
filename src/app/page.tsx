@@ -1,17 +1,12 @@
 'use client';
 
-import { List, ListItem } from '@/components/ui/List';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useI18n } from '@/hooks/useI18n';
 import { useTheme } from '@/hooks/useTheme';
-import { TextField } from '@/components/ui/TextField';
-import { Table } from '@/components/ui/Table';
-import Button from '@/components/ui/Button/Button';
-import { Tabs } from '@/components/ui/Tabs';
-import { Alert } from '@/components/ui/Alert';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Chart } from '@/components/ui/Chart';
+import { Button } from '@/components/ui/Button';
 
 export default function Home() {
   const { setTheme, themes } = useTheme();
@@ -45,6 +40,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 w-full max-w-xl mx-auto px-2 py-10"></div>
+    <div className="flex flex-col items-center justify-center gap-4 w-full max-w-xl mx-auto px-2 py-10">
+      <div>
+        <Button>Click</Button>
+      </div>
+    </div>
   );
 }
