@@ -2,7 +2,8 @@ import { cn } from '@/utils/cn';
 
 type VariantsDef = Record<string, Record<string, string>>;
 type DefaultVariants<V extends VariantsDef> = Partial<{ [K in keyof V]: keyof V[K] }>;
-type CompoundVariant<V extends VariantsDef> = Partial<{ [K in keyof V]: keyof V[K] }> & {
+type CompoundVariant<V extends VariantsDef> = Partial<{ [K in keyof V]: keyof V[K] }>;
+type CompoundVariantWithClass<V extends VariantsDef> = CompoundVariant<V> & {
   className?: string;
   class?: string;
 };
@@ -15,7 +16,7 @@ export function cva<
   options?: {
     variants?: V;
     defaultVariants?: D;
-    compoundVariants?: CompoundVariant<V>[];
+    compoundVariants?: CompoundVariantWithClass<V>[];
   }
 ) {
   // Accept boolean/number values to mirror cva library behavior
@@ -48,8 +49,12 @@ export function cva<
     // Apply compound variants when all conditions match
     if (options?.compoundVariants) {
       for (const cv of options.compoundVariants) {
-        const { class: cvClassLegacy, className: cvClassName, ...rest } = cv as CompoundVariant<V>;
-        const conds: Partial<Record<keyof V, unknown>> = rest;
+        const {
+          class: cvClassLegacy,
+          className: cvClassName,
+          ...rest
+        } = cv as CompoundVariantWithClass<V>;
+        const conds = rest as Partial<Record<keyof V, unknown>>;
         const cvClass = cvClassName ?? cvClassLegacy;
         const keys = Object.keys(conds) as Array<keyof V>;
         const matches = keys.every((k) => {

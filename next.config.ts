@@ -16,10 +16,6 @@ const nextConfig: NextConfig = {
     rules: {
       '*.d.mts': { loaders: ['empty'] },
     },
-    resolveAlias: {
-      // Force clsx to resolve to its JS entry to avoid .d.mts resolution issues
-      clsx: require.resolve('clsx'),
-    },
   },
 };
 

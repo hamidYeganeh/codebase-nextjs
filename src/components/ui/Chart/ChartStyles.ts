@@ -1,4 +1,4 @@
-import { cva } from 'class-variance-authority';
+import { cva } from '@/utils/cva';
 import { cn } from '@/utils/cn';
 
 const ChartContainerStyles = cva(
