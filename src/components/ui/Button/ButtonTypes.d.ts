@@ -12,7 +12,10 @@ export interface ButtonProps extends HTMLButtonProps, ButtonStylesVariants {
   as?: ElementType;
   href?: string;
   loading?: boolean;
+  spinnerPlacement?: 'start' | 'end' | 'center';
+  spinner?: ReactNode;
   isIconOnly?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  disableAnimation?: boolean;
 }

@@ -3,28 +3,26 @@ import { cva } from 'class-variance-authority';
 
 const ButtonBaseStyles = cva(
   cn(
-    // base
-    'outline-none border-0 inline-flex flex-row items-center min-w-max justify-center gap-1.5 relative overflow-hidden select-none cursor-pointer box-border subpixel-antialiased whitespace-nowrap',
-    // interaction states
-    'focus-visible:ring-2 focus-visible:ring-(--light-color) focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
-    'disabled:opacity-60 disabled:cursor-not-allowed',
-    // typography
-    'font-semibold'
+    'relative inline-flex min-w-max items-center justify-center gap-1.5 overflow-hidden rounded-medium font-semibold outline-none whitespace-nowrap select-none subpixel-antialiased box-border',
+    'border border-transparent focus-visible:ring-2 focus-visible:ring-(--light-color) focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+    'disabled:opacity-60 disabled:cursor-not-allowed'
   ),
   {
     variants: {
       variant: {
-        contained: 'bg-(--color) text-(--text-color) hover:bg-(--dark-color)',
-        solid: 'bg-(--color) text-(--text-color) hover:bg-(--dark-color)',
+        contained: 'bg-(--color) text-(--text-color) shadow-sm hover:bg-(--dark-color)',
+        solid: 'bg-(--color) text-(--text-color) shadow-sm hover:bg-(--dark-color)',
         outlined:
-          'ring hover:ring-2 ring-(--color) bg-transparent hover:bg-(--light-color) text-(--color)',
+          'ring ring-(--color) bg-transparent text-(--color) hover:ring-2 hover:bg-(--light-color)',
         bordered:
-          'ring hover:ring-2 ring-(--color) bg-transparent hover:bg-(--light-color) text-(--color)',
+          'ring ring-(--color) bg-transparent text-(--color) hover:ring-2 hover:bg-(--light-color)',
         light: 'bg-transparent text-(--color) hover:bg-(--light-color)',
         flat: 'text-(--color) bg-(--light-color)',
         ghost:
           'bg-transparent border-2 border-(--color) text-(--color) hover:bg-(--color) hover:text-(--text-color)',
-        faded: 'ring hover:ring-2 ring-gray-100 text-(--color) bg-gray-200 hover:bg-gray-300',
+        faded: 'ring ring-gray-100 text-(--color) bg-gray-100 hover:bg-gray-200',
+        shadow:
+          'bg-(--color) text-(--text-color) shadow-lg shadow-(--light-color) hover:shadow-xl hover:bg-(--dark-color)',
       },
       color: {
         primary:
@@ -83,6 +81,14 @@ const ButtonBaseStyles = cva(
 
 export const ButtonStyles = {
   base: ButtonBaseStyles,
+  content: cva('inline-flex items-center gap-1.5', {
+    variants: {
+      isIconOnly: {
+        true: 'w-full h-full justify-center',
+        false: '',
+      },
+    },
+  }),
   icon: cva('btn-icon inline-flex items-center justify-center', {
     variants: {
       size: {
@@ -95,4 +101,19 @@ export const ButtonStyles = {
     },
     defaultVariants: { size: 'md' },
   }),
+  spinner: cva(
+    'inline-flex animate-spin rounded-full border-2 border-(--text-color) border-t-transparent',
+    {
+      variants: {
+        size: {
+          xs: 'w-3.5 h-3.5',
+          sm: 'w-3.5 h-3.5',
+          md: 'w-4 h-4',
+          lg: 'w-4.5 h-4.5',
+          xl: 'w-5 h-5',
+        },
+      },
+      defaultVariants: { size: 'md' },
+    }
+  ),
 };
