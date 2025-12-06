@@ -10,32 +10,26 @@ const ButtonBaseStyles = cva(
   {
     variants: {
       variant: {
-        contained: 'bg-(--color) text-(--text-color) shadow-sm hover:bg-(--dark-color)',
-        solid: 'bg-(--color) text-(--text-color) shadow-sm hover:bg-(--dark-color)',
+        contained: 'bg-(--main-color) text-(--text-color) shadow-sm hover:bg-(--dark-color)',
         outlined:
-          'ring ring-(--color) bg-transparent text-(--color) hover:ring-2 hover:bg-(--light-color)',
-        bordered:
-          'ring ring-(--color) bg-transparent text-(--color) hover:ring-2 hover:bg-(--light-color)',
-        light: 'bg-transparent text-(--color) hover:bg-(--light-color)',
-        flat: 'text-(--color) bg-(--light-color)',
+          'ring ring-(--main-color) bg-transparent text-(--main-color) hover:ring-2 hover:bg-(--lighter-color)',
+        light: 'bg-transparent text-(--main-color) hover:bg-(--light-color)',
+        flat: 'text-(--main-color) bg-(--light-color)',
         ghost:
-          'bg-transparent border-2 border-(--color) text-(--color) hover:bg-(--color) hover:text-(--text-color)',
-        faded: 'ring ring-gray-100 text-(--color) bg-gray-100 hover:bg-gray-200',
+          'bg-transparent border-2 border-(--main-color) text-(--main-color) hover:bg-(--main-color) hover:text-(--text-color)',
+        faded: 'ring ring-gray-100 text-(--main-color) bg-gray-100 hover:bg-gray-200',
         shadow:
-          'bg-(--color) text-(--text-color) shadow-lg shadow-(--light-color) hover:shadow-xl hover:bg-(--dark-color)',
+          'bg-(--main-color) text-(--text-color) shadow-lg shadow-(--light-color) hover:shadow-xl hover:bg-(--dark-color)',
       },
       color: {
-        primary:
-          '[--color:theme(colors.primary.500)] [--dark-color:theme(colors.primary.600)] [--light-color:theme(colors.primary.50)] [--text-color:theme(colors.primary.50)]',
-        success:
-          '[--color:theme(colors.success.500)] [--dark-color:theme(colors.success.600)] [--light-color:theme(colors.success.50)] [--text-color:theme(colors.success.50)]',
-        error:
-          '[--color:theme(colors.error.500)] [--dark-color:theme(colors.error.600)] [--light-color:theme(colors.error.50)] [--text-color:theme(colors.error.50)]',
-        warning:
-          '[--color:theme(colors.warning.500)] [--dark-color:theme(colors.warning.600)] [--light-color:theme(colors.warning.50)] [--text-color:theme(colors.warning.50)]',
-        info: '[--color:theme(colors.info.500)] [--dark-color:theme(colors.info.600)] [--light-color:theme(colors.info.50)] [--text-color:theme(colors.info.50)]',
-        default:
-          '[--color:theme(colors.gray.500)] [--dark-color:theme(colors.gray.600)] [--light-color:theme(colors.gray.50)] [--text-color:theme(colors.gray.50)]',
+        primary: cn(
+          '[--lighter-color:theme(colors.primary.50)]',
+          '[--light-color:theme(colors.primary.100)]',
+          '[--main-color:theme(colors.primary.500)]',
+          '[--dark-color:theme(colors.primary.600)]',
+          '[--darker-color:theme(colors.primary.700)]',
+          '[--text-color:theme(colors.primary.50)]'
+        ),
       },
       size: {
         xs: 'h-8 px-2 text-xs',

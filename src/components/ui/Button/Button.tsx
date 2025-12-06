@@ -57,18 +57,6 @@ const Button: FC<ButtonProps> = (props) => {
     return spinner ?? <span aria-hidden className={ButtonStyles.spinner({ size })} />;
   }, [size, spinner]);
 
-  const content = useMemo(() => {
-    return (
-      <>
-        {loading && spinnerPlacement === 'start' ? spinnerNode : null}
-        {startIcon ? <span className={ButtonStyles.icon({ size })}>{startIcon}</span> : null}
-        <span className={cn(isIconOnly && 'sr-only')}>{children}</span>
-        {endIcon ? <span className={ButtonStyles.icon({ size })}>{endIcon}</span> : null}
-        {loading && spinnerPlacement === 'end' ? spinnerNode : null}
-      </>
-    );
-  }, [children, endIcon, isIconOnly, loading, size, spinnerNode, spinnerPlacement, startIcon]);
-
   return (
     <Component
       ref={buttonRef}
@@ -92,12 +80,16 @@ const Button: FC<ButtonProps> = (props) => {
       {...otherProps}
     >
       <Ripple parentRef={buttonRef} ref={rippleRef} />
-      {loading && spinnerPlacement === 'center' ? (
+
+      {loading ? (
         <span className="absolute inset-0 flex items-center justify-center" aria-hidden>
           {spinnerNode}
         </span>
       ) : null}
-      <span className={ButtonStyles.content({ isIconOnly })}>{content}</span>
+
+      {startIcon ? <span className={ButtonStyles.icon({ size })}>{startIcon}</span> : null}
+      <span className={cn(isIconOnly && 'sr-only')}>{children}</span>
+      {endIcon ? <span className={ButtonStyles.icon({ size })}>{endIcon}</span> : null}
     </Component>
   );
 };

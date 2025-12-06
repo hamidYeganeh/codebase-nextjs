@@ -1,0 +1,21 @@
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: codebase-nextjs@0.1.0
+npm error Found: next@16.0.0
+npm error node_modules/next
+npm error   next@"16.0.0" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer next@"^13.5.0 || ^14.0.0" from @storybook/nextjs@8.1.0
+npm error node_modules/@storybook/nextjs
+npm error   dev @storybook/nextjs@"8.1.0" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /Users/hassan/.npm/_logs/2025-12-06T11_25_19_134Z-eresolve-report.txt
+npm error A complete log of this run can be found in: /Users/hassan/.npm/_logs/2025-12-06T11_25_19_134Z-debug-0.log

@@ -1,8 +1,6 @@
 // libs
 import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
-// types
-import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
@@ -10,13 +8,9 @@ const withNextIntl = createNextIntlPlugin({
   },
 });
 
-const nextConfig: NextConfig = {
-  turbopack: {
-    // Workaround Turbopack error for `clsx/clsx.d.mts` by ignoring type-only .d.mts files
-    rules: {
-      '*.d.mts': { loaders: ['empty'] },
-    },
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Removed turbopack configuration as it might not be compatible with next 14.1.0 or require different configuration
 };
 
 export default withNextIntl(nextConfig);

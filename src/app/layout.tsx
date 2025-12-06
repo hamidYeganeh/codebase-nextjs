@@ -1,5 +1,5 @@
 // libs
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import { Providers } from "./providers";
 // types
 import type { Metadata, Viewport } from "next";
@@ -7,13 +7,13 @@ import { getLocale } from "next-intl/server";
 // styles
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-geist-sans", // Keeping variable name for compatibility
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const robotoMono = Roboto_Mono({
+  variable: "--font-geist-mono", // Keeping variable name for compatibility
   subsets: ["latin"],
 });
 
@@ -57,7 +57,7 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${robotoMono.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>
